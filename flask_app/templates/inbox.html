@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Inbox</title>
+</head>
+<body>
+    <div class="header">
+        <div class="h-1">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-2">
+            <a href="/dashboard/" id="link">| Dashboard |</a>
+            <a href="/logout/" id="link">Logout |</a>
+        </div>
+    </div>
+    <div class="page">
+        <div class="user-info">
+            <div class="avatar">
+                <img id="picture" src="{{current_avatar.file_path}}">
+            </div>
+            <div>
+                <h3>{{person.username}}</h3>
+            </div>
+            <div>
+                <h3>{{person.first_name + " " + person.last_name}}</h3>
+            </div>
+        </div>
+        <form action="/send-msg/" method="post">
+        <div class="send">
+            <div class="send-1">
+                <h3>Send message to:</h3>
+                <select name="recipient_id" id="select">
+                    {% for choice in choices %}
+                        {% if choice.id != session["user_id"] %}
+                            <option value="{{choice.id}}">
+                                {{choice.first_name + " " + choice.last_name}}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="send-2">
+                <label><h4>Subject:</h4></label>
+                <input type="text" name="subject" id="subject">
+            </div>
+            <div class="send-3">
+                <label><p>Message:</p></label>
+                <textarea name="msg_text" cols="30" rows="4" id="message" wrap="hard"></textarea>
+            </div>
+            <div class="send-4">
+                <input type="submit" value="Send" id="send">
+            </div>
+        </div>
+        </form>
+        <div class="inbox">
+            <div class="i-1">
+                <h2>Inbox</h2>
+            </div>
+            {% for msg in msgs %}
+                {% if msg.recipient_id == session["user_id"] %}
+                <div class="i-2">
+                    <div class="flex">
+                        <h3>From: {{msg.maker.first_name + " " + msg.maker.last_name}}</h3>
+                        <h4><a href="+">Reply</a></h4>
+                    </div>
+                    <h4>Subject: {{msg.subject}}</h4>
+                    <h4>Received at: {{msg.created_at}}</h4>
+                    <p>{{msg.msg_text}}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="outbox">
+            <div class="o-1">
+                <h2>Outbox</h2>
+            </div>
+            {% for delivery in deliveries %}
+                {% if delivery.user_id == session["user_id"] %}
+                <div class="o-2">
+                    <div class="o-3">
+                        <h3>Sent to: {{delivery.maker.first_name + " " + delivery.maker.last_name}}</h3>
+                        <a href="/unsend-msg/{{delivery.id}}">Unsend</a>
+                    </div>
+                    <h4>Subject: {{delivery.subject}}</h4>
+                    <h4>Sent at: {{delivery.created_at}}</h4>
+                    <p>{{delivery.msg_text}}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

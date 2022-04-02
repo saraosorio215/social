@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Edit Post</title>
+</head>
+<body>
+    <div class="header">
+        <div class="h-1">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-2">
+            <a href="/inbox/" id="link">Inbox</a>
+            <a href="/logout/" id="link">Logout</a>
+        </div>
+    </div>
+    <div class="page">
+        <div class="user-info">
+            <div class="avatar">
+                <img id="picture" src="{{current_avatar.file_path}}">
+            </div>
+            <div>
+                <h3>{{person.username}}</h3>
+            </div>
+            <div>
+                <h3>{{person.first_name + " " + person.last_name}}</h3>
+            </div>
+        </div>
+        <div class="edit">
+            <form action="/update/post/{{info.id}}" method="post">
+                <div class="edit-1">
+                    <label><h3>Title:</h3></label>
+                    <input type="text" name="title" value="{{info.title}}" id="title">
+                </div>
+                <div class="edit-2">
+                    <label><h3>Post:</h3></label>
+                    <textarea name="content" cols="30" rows="4" id="content" wrap="hard">{{info.content}}</textarea>
+                </div>
+                <div class="button">
+                    <a href="/dashboard/">Go Back</a>
+                    <input type="submit" value = "Update" id="update">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

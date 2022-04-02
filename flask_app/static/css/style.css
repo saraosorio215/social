@@ -1,0 +1,411 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+.row, .header, .page, .o-3, .edit-1, .edit-2, .flex, .f-1, .profile-user {
+    display: flex;
+}
+
+.row, .header, .user-info, .whole, .profile-user {
+    background-color: #B0BFBB;
+}
+
+.c-post, .page {
+    background-color: #CDDDDD;
+}
+
+.row {
+    height: 600px;
+}
+
+.header {
+    padding-bottom: 3px;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+
+.page, .whole {
+    margin-top: 35px;
+}
+
+textarea { resize: none; }
+
+/**------------------------------BORDERS-------------------------------------*/
+
+.col-2, .avatar, .i-2, .o-2 {
+    border: 2px solid #CDDDDD;
+}
+
+.outbox {
+    border-left: 2px #CDDDDD solid;
+}
+
+.header, .send {
+    border-bottom: 2px solid #CDDDDD;
+}
+
+.user-info, .send {
+    border-right: 2px solid #CDDDDD;
+}
+
+/**------------------------------INDEX-------------------------------------*/
+
+.login {
+    margin-top: 5px;
+}
+
+.col-1 {
+    flex: 3;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    letter-spacing: 3px;
+    font-size: 16pt;
+}
+
+.col-1 h1 {
+    align-items: center;
+}
+
+.col-2 {
+    margin: auto;
+    flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    margin-right: 15px;
+}
+
+.col-2 label, .col-2 input, .col-2 h2 {
+    margin-bottom: 8px;
+}
+
+.col-2 h2 {
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+}
+
+.form input[type=text], .form input[type=password], .col-2 input[type=text], .col-2 input[type=password] {
+    padding: 0;
+    height: 20px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin: 3px;
+}
+
+.f-1, .f-2 {
+    flex: 1;
+}
+
+.main-title img {
+    width: 70px;
+    height: 20px;
+}
+
+.login {
+
+}
+
+/**-------------------------------CHOOSE-------------------------------------*/
+
+.whole {
+    padding-bottom: 10px;
+}
+
+.welcome, .av-title, .av-imgs h3, .form, .whole {
+    text-align: center;
+}
+
+.form, .f-1 {
+    justify-content: center;
+}
+
+.welcome {
+    letter-spacing: 3px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.welcome img, .col-1 img {
+    height: 20px;
+    width: auto;
+}
+
+.av-title {
+    padding-top: 10px;
+}
+
+.av-imgs {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.av-imgs img {
+    height: 80px;
+    width: 80px;
+}
+
+.p-title, .imgs1, .imgs2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.low-img, .high-img {
+    border: 2px white solid;
+    padding: 10px;
+}
+
+.imgs1, .imgs2 {
+    margin-top: 40px;
+}
+
+.f-1 label {
+    margin-top: 3px;
+    margin-right: 2px;
+}
+
+#register {
+    border: none;
+    text-decoration: none;
+    font-family: monospace;
+    background-color: #B0BFBB;
+    padding: 5px;
+    text-align: right;
+    box-shadow: 2px 2px grey;
+    margin-top: 15px;
+}
+
+
+/**-------------------------------DASHBOARD-------------------------------------*/
+
+.h-1, .h-2 {
+    flex: 1;
+}
+
+.h-1 {
+    padding-left: 5px;
+}
+
+.h-2 {
+    text-align: right;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.h-1 img, .v-post img {
+    width: 30px;
+    height: 13px;
+}
+
+.v-post img {
+    padding-right: 4px;
+}
+
+.user-info {
+    width: 150px;
+    padding: 15px;
+}
+
+.user-info h3 {
+    margin-top: 5px;
+}
+
+.c-post, .actpost {
+    margin-top: 10px;
+}
+
+.c-post {
+    flex: 2;
+    margin-left: 20px;
+    padding: 10px;
+}
+
+.actpost {
+    margin-bottom: 20px;
+    background-color: #99ADAA;
+    padding: 12px;
+}
+.c-post h2 {
+    margin-bottom: 5px;
+}
+
+.v-post {
+    flex: 2;
+    margin-top: 10px;
+    margin-right: 50px;
+    height: 100%;
+}
+
+.avatar, .avatar img {
+    height: 130px;
+    width: 130px;
+}
+
+#title, #content {
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 3px;
+    padding: 3px;
+}
+
+#title {
+    width: 400px;
+    height: 20px;
+}
+
+#content {
+    width: 450px;
+    height: 150px;
+    text-align: left;
+    padding: 3px;
+}
+
+#posted, #comment, #send, #login {
+    border: none;
+    padding: 3px;
+    box-shadow: 2px 2px grey;
+}
+
+#po-comm, .comm-title, #send, #comment, #coolfeed, .c-post, .col-2 {
+    text-align: center;
+}
+
+#edited {
+    color: #DE3C4B;
+    text-align: left;
+    padding-left: 3px;
+}
+
+#link {
+    text-decoration: none;
+    color: black;
+}
+
+#coolfeed {
+    letter-spacing: 7px;
+    font-size: 25px;
+}
+
+.like {
+    text-align: right;
+}
+
+.actcomment, .comments, #login {
+    margin-top: 8px;
+}
+
+.actcomment {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#comment_text {
+    padding: 3px;
+}
+
+#profile-pic {
+    height: 75px;
+    width: 75px;
+}
+
+.profile-user {
+    margin-top: 10px;
+    border: 1px solid black;
+    padding: 4px;
+}
+
+/**-------------------------------INBOX-------------------------------------*/
+
+.page {
+    padding-bottom: 40px;
+}
+
+.send-1, .send-2, .send-3, .send-4 {
+    display: flex;
+    padding: 5px;
+}
+
+.o-3, .flex {
+    justify-content: space-between;
+}
+
+.inout {
+    justify-content: space-evenly;
+}
+
+.inbox, .outbox {
+    flex: 2;
+    padding-left : 15px;
+    padding-top: 5px;
+    margin-right: 15px;
+    width: 100%;
+}
+
+.i-2, .o-2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.send {
+    flex: 1;
+    padding: 15px;
+    align-items: left;
+}
+
+#subject, #message, #select {
+    border: 1px #e9ecef solid;
+    margin-left: 3px;
+    background-color: #dee2e6;
+}
+
+#subject, #message {
+    width: 400px;
+}
+
+#message {
+    height: 120px;
+}
+
+.comments {
+    text-align: center;
+}
+
+#comment_text {
+    margin-top: 5px;
+    border: none;
+    width: 75%;
+    height: 50px;
+}
+
+
+/**-------------------------------EDIT POST-------------------------------------*/
+
+.edit {
+    margin: auto;
+    text-align: left;
+    padding-top: 20px;
+}
+
+#update {
+    border: none;
+    padding: 3px;
+    box-shadow: 2px 2px grey;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button {
+    text-align: center;
+}

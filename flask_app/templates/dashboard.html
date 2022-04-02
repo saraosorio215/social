@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="header">
+        <div class="h-1">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-welcome">
+            <h1>Welcome, {{current_user.first_name}}!</h1>
+        </div>
+        <div class="h-2">
+            <a href="/inbox/" id="link">| Inbox |</a>
+            <a href="/logout/" id="link">Logout |</a>
+        </div>
+    </div>
+    <div class="page">
+        <div class="user-info">
+            <div class="avatar">
+                <img id="picture" src="{{current_avatar.file_path}}">
+            </div>
+            <div>
+                <h3>{{current_user.username}}</h3>
+            </div>
+            <div>
+                <h3>{{current_user.first_name + " " + current_user.last_name}}</h3>
+            </div>
+        </div>
+        <div class="c-post">
+            <div>
+                <h2>Got something to say?</h2>
+                <h2>Post it here!</h2>
+            </div>
+            <div>
+            <form action="/new_post/" method="post">
+                <label>Title:</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div>
+                <textarea name="content" cols="30" rows="4" placeholder="Say it!" id="content" wrap="hard"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Post to Newsfeed" id="posted">
+                </form>
+            </div>
+            {% for user in all_users %}
+            <div class="profile-user">
+                <div>
+                    <img id="profile-pic" src="{{user.maker.file_path}}">
+                </div>
+                <div>
+                    <p>{{user.username}}</p>
+                    <p>{{user.first_name + " " + user.last_name}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="v-post">
+            <div>
+                <h2 id="coolfeed">C<img src="{{url_for('static',filename='img/sunglasses1.jpg')}}" alt="logo">lFeed</h2>
+            </div>
+            {% for post in all_posts %}
+            <div class="actpost">
+                <div class="p-title">
+                    <div>
+                        <h2>{{post.title}}</h2>
+                    </div>
+                    <div>
+                        {% if session["user_id"] == post.user_id %}
+                            <a href="/edit/post/{{post.id}}">Edit</a>
+                            <a href="/delete/post/{{post.id}}">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <h3>Written by: {{post.maker.username}}</h3>
+                    <div class="flex">
+                        <h4>Posted on: {{post.maker.created_at}}</h4>
+                        {% if post.created_at != post.updated_at %}
+                            <h4 id="edited">(Edited)</h4>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <p>{{post.content}}</p>
+                </div>
+                <div class="like">
+                    <button>Like</button>
+                </div>
+                <h3 class="comm-title">Comments</h3>
+                {% for comment in all_comments %}
+                    {% if comment.post_id == post.id %}
+                        <div class="actcomment">
+                            <p>Posted by: {{comment.creator.username}}</p>
+                            <p>Posted on: {{comment.created_at}}</p>
+                            <p>{{comment.comment_text}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <form action="/new-comment/" method="post">
+                    <div class="comments">
+                        <input type="hidden" name="post_id" value="{{post.id}}">
+                        <textarea name="comment_text" cols="20" rows = "2" id="comment_text" wrap="hard" placeholder="Thoughts?"></textarea>
+                    </div>
+                    <div id="po-comm">
+                        <input type="submit" value="Post Comment" id="comment">
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

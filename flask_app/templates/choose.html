@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Welcome!</title>
+</head>
+<body>
+    <div class="header">
+        <div class="h-1">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-2">
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+    <div class="whole">
+        <div class="welcome">
+            <h1>Welcome to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace!</h1>
+        </div>
+        <div class="form">
+            <form action="/register/" method="post">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="f-1">
+                    <label>First Name:</label>
+                    <input type="text" name="first_name">
+                </div>
+                <div class="f-1">
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name">
+                </div>
+                <div class="f-1">
+                    <label>Username:</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="f-1">
+                    <label>Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="f-1">
+                    <label>Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="f-1">
+                    <label>Confirm Password:</label>
+                    <input type="password" name="conf_password">
+                </div>
+        </div>
+        <div class="av-title">
+            <h1>Choose your avatar</h1>
+        </div>
+        <div class="av-imgs">
+            <div class="imgs1">
+                {% for avatar in avatars %}
+                    {% if (avatar.id) < 6 %}
+                        <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
+                        <label for ="{{avatar.id}}">
+                            <div class="low-img">
+                                <img src="{{avatar.file_path}}" alt="option 10">
+                                <h3>{{avatar.name}}</h3>
+                            </div>
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="imgs2">
+                {% for avatar in avatars %}
+                    {% if (avatar.id) > 5 %}
+                        <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
+                        <label for ="{{avatar.id}}">
+                            <div class="high-img">
+                                <img src="{{avatar.file_path}}" alt="option 10">
+                                <h3>{{avatar.name}}</h3>
+                            </div>
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <input type="submit" value="Register" id="register">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
