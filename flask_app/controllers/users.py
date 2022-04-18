@@ -40,6 +40,12 @@ def logout():
     session.clear()
     return redirect("/")
 
+@app.route("/profile/")
+def profile():
+    if "user_id" in session:
+        return render_template("profile.html")
+    return redirect("/")
+
 
 #*---------------------------------ACTION ROUTES-------------------------------------
 
