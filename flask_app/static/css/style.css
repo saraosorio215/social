@@ -34,6 +34,19 @@
 
 textarea { resize: none; }
 
+/**-----------------------------GENERIC------------------------------------*/
+.padding {
+    padding: 10px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.padd-bottom {
+    padding-bottom: 5px;
+}
+
 /**------------------------------BORDERS-------------------------------------*/
 
 .col-2, .avatar, .i-2, .o-2 {
@@ -227,8 +240,8 @@ textarea { resize: none; }
 
 .c-post {
     flex: 2;
-    margin-left: 20px;
-    padding: 10px;
+    margin-left: 2.5%;
+    margin-right: 1.25%;
 }
 
 .actpost {
@@ -243,7 +256,8 @@ textarea { resize: none; }
 .v-post {
     flex: 2;
     margin-top: 10px;
-    margin-right: 50px;
+    margin-right: 2.5%;
+    margin-left: 1.25%;
     height: 100%;
 }
 
@@ -320,9 +334,16 @@ textarea { resize: none; }
 }
 
 .profile-user {
-    margin-top: 10px;
-    border: 1px solid black;
-    padding: 4px;
+    margin-top: 1.5%;
+    width: 30%;
+}
+
+#green-dot {
+    color: green;
+}
+
+#red-dot {
+    color: red;
 }
 
 /**-------------------------------INBOX-------------------------------------*/

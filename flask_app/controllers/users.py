@@ -31,12 +31,15 @@ def dash():
         avatar_data = {"id" : current_user.avatar_id}
         current_avatar = avatar.Avatar.getav_by_id(avatar_data)
         all_users = user.User.get_all_with_av()
-        return render_template("dashboard.html", all_users = all_users, current_user = current_user, all_comments=all_comments, all_posts = all_posts, current_avatar = current_avatar)
+        current_prof = user.User.get_user_prof(data)
+        return render_template("dashboard.html", all_users = all_users, current_user = current_user, all_comments=all_comments, all_posts = all_posts, current_avatar = current_avatar, current_prof = current_prof)
     return redirect("/")
 
 
 @app.route("/logout/")
 def logout():
+    data = {"id": session['user_id']}
+    user.User.offline(data)
     session.clear()
     return redirect("/")
 
@@ -82,4 +85,5 @@ def login():
         flash("Invalid Login!")
         return redirect("/")
     session["user_id"]= person.id
+    user.User.online(person.id)
     return redirect("/dashboard/")

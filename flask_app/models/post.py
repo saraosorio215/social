@@ -15,7 +15,7 @@ class Post():
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM posts JOIN users ON users.id = posts.user_id"
+        query = "SELECT * FROM posts JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC;"
         results = connectToMySQL("contact").query_db(query)
         posts = []
         if results:
@@ -29,6 +29,7 @@ class Post():
                     "email" : row["email"],
                     "password" : row["password"],
                     "avatar_id" : row["avatar_id"],
+                    "online" : row["online"],
                     "created_at" : row["users.created_at"],
                     "updated_at" : row["users.updated_at"]
                 }

@@ -17,6 +17,7 @@ class User():
         self.email = data["email"]
         self.password = data["password"]
         self.avatar_id = data["avatar_id"]
+        self.online = data["online"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
@@ -64,6 +65,21 @@ class User():
     def get_all(cls):
         query = "SELECT * FROM users"
         return connectToMySQL("contact").query_db(query)
+
+    @classmethod
+    def offline(cls, data):
+        query = "UPDATE users SET online = (0) WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)
+
+    @classmethod
+    def online(cls, data):
+        query = "UPDATE users SET online = (1) WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)
+
+    @classmethod
+    def get_user_prof(cls, data):
+        query = "SELECT * FROM users LEFT JOIN profiles ON profiles.user_id = users.id WHERE users.id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)
 
 
     @classmethod
