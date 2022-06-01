@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, request, redirect, session
-from flask_app.models import post, user, avatar
+from flask_app.models import post, user, avatar, like
 from flask_app.config.mysqlconnection import connectToMySQL
 
 #*---------------------------------DISPLAY ROUTES-------------------------------------
@@ -26,10 +26,16 @@ def deleting_post(id):
     return redirect ("/dashboard/")
 
 
-
-
-
-
+@app.route("/like/post/<int:id>")
+def like_post(id):
+    data = {"id" : id}
+    post.Post.update_likes(data)
+    all_data = { 
+        "post_id": id,
+        "user_id": session["user_id"]
+    }
+    like.Like.add_like(all_data)
+    return redirect("/dashboard/")
 
 
 #*---------------------------------ACTION ROUTES-------------------------------------

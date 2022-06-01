@@ -28,6 +28,19 @@
             <div>
                 <h3>{{person.first_name + " " + person.last_name}}</h3>
             </div>
+            <br />
+            {% if current_prof.birthday == null %}
+            <div>
+                <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
+            </div>
+            {% endif %}
+            {% if current_prof.birthday != null %}
+            <div>
+                <a href="/profile/{{person.id}}">View Profile</a>
+                <br />
+                <a href="+">Edit Profile</a>
+            </div>
+            {% endif %}
         </div>
         <form action="/send-msg/" method="post">
         <div class="send">
@@ -62,15 +75,19 @@
             </div>
             {% for msg in msgs %}
                 {% if msg.recipient_id == session["user_id"] %}
-                <div class="i-2">
+                    {% if msg.isRead == false %}
+                    <div class="i-2 unread">
+                    {% endif %}
+                    {% if msg.isRead == true %}
+                    <div class="i-2">
+                    {% endif %}
                     <div class="flex">
                         <h3>From: {{msg.maker.first_name + " " + msg.maker.last_name}}</h3>
-                        <h4><a href="+">Reply</a></h4>
+                        <h4><a href="+">Open</a></h4>
                     </div>
-                    <h4>Subject: {{msg.subject}}</h4>
-                    <h4>Received at: {{msg.created_at}}</h4>
-                    <p>{{msg.msg_text}}</p>
-                </div>
+                        <h4>Subject: {{msg.subject}}</h4>
+                        <h4>Received at: {{msg.created_at}}</h4>
+                    </div>
                 {% endif %}
             {% endfor %}
         </div>

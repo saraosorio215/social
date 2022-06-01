@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Profile Setup</title>
+</head>
+<body>
+    <div class="header">
+        <div class="h-1">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-2">
+            <a href="/dashboard/" id="link">| Dashboard |</a>
+            <a href="/logout/" id="link">Logout |</a>
+        </div>
+    </div>
+    <div class="page center prof-form">
+        <form action="/create/profile/{{curr_user.id}}" method="post">
+            <div>
+                <label>Birthday: </label>
+                <input type="date" name="birthday" id="title">
+            </div>
+            <div>
+                <label>Hometown: </label>
+                <input type="text" name="hometown" id="title">
+            </div>
+            <div>
+                <label>Location: </label>
+                <input type="text" name="location" id="title">
+            </div>
+            <div>
+                <label>Favorite Show: </label>
+                <input type="text" name="fav_show" id="title">
+            </div>
+            <div>
+                <label>Favorite Movie: </label>
+                <input type="text" name="fav_movie" id="title">
+            </div>
+            <div>
+                <label>Favorite Quote: </label>
+                <input type="text" name="fav_quote" id="title">
+            </div>
+            <div>
+                <label>About Me: </label>
+                <textarea name="about_me" cols="30" rows="4" placeholder="Tell us more" id="content" wrap="hard"></textarea>
+            </div>
+            <br />
+            <div class="center">
+                <input type="submit" value="Update Profile" id="posted">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

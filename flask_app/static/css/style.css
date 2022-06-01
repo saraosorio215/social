@@ -4,21 +4,18 @@
     font-family: monospace;
 }
 
-.row, .header, .page, .o-3, .edit-1, .edit-2, .flex, .f-1, .profile-user {
+.header, .page, .o-3, .edit-1, .edit-2, .flex, .f-1 {
     display: flex;
 }
 
-.row, .header, .user-info, .whole, .profile-user {
+.header, .user-info, .whole, .profile-user {
     background-color: #B0BFBB;
 }
 
-.c-post, .page {
+.c-post, .page, .colored {
     background-color: #CDDDDD;
 }
 
-.row {
-    height: 600px;
-}
 
 .header {
     padding-bottom: 3px;
@@ -39,17 +36,85 @@ textarea { resize: none; }
     padding: 10px;
 }
 
-.text-left {
-    text-align: left;
-}
-
 .padd-bottom {
     padding-bottom: 5px;
 }
 
+.padd-top {
+    padding-top: 5px;
+}
+
+.marg-left-5 {
+    margin-left: 5px;
+}
+
+.marg-left-10 {
+    margin-left: 10px;
+}
+
+.marg-right-10 {
+    margin-right: 10px;
+}
+
+.marg-right-20 {
+    margin-right: 20px;
+}
+
+.marg-top-10 {
+    margin-top: 10px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.center {
+    text-align: center;
+}
+
+.flexed {
+    display: flex;
+}
+
+.sp-btw {
+    justify-content: space-between;
+}
+
+.just-cent {
+    justify-content: center;
+}
+
+.just-right {
+    justify-content: right;
+}
+
+.sp-ar {
+    justify-content: space-around;
+}
+
+.al-cent {
+    align-items: center;
+}
+
+.al-bottom {
+    align-items: baseline;
+}
+
+.half {
+    width: 40%;
+}
+
+.letter-spc {
+    letter-spacing: 3px;
+}
+
 /**------------------------------BORDERS-------------------------------------*/
 
-.col-2, .avatar, .i-2, .o-2 {
+.login, .avatar, .i-2, .o-2 {
     border: 2px solid #CDDDDD;
 }
 
@@ -68,43 +133,22 @@ textarea { resize: none; }
 /**------------------------------INDEX-------------------------------------*/
 
 .login {
-    margin-top: 5px;
+    padding: 15px;
+    max-width: fit-content;
 }
 
-.col-1 {
-    flex: 3;
-    text-align: center;
-    justify-content: center;
-    margin: auto;
-    letter-spacing: 3px;
-    font-size: 16pt;
-}
-
-.col-1 h1 {
-    align-items: center;
-}
-
-.col-2 {
-    margin: auto;
-    flex: 1;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    margin-right: 15px;
-}
-
-.col-2 label, .col-2 input, .col-2 h2 {
+.login label, .login input, .login h2 {
     margin-bottom: 8px;
 }
 
-.col-2 h2 {
+.login h2 {
     text-align: center;
     font-weight: 100;
     margin-bottom: 8px;
     letter-spacing: 3px;
 }
 
-.form input[type=text], .form input[type=password], .col-2 input[type=text], .col-2 input[type=password] {
+.form input[type=text], .form input[type=password], .login input[type=text], .login input[type=password] {
     padding: 0;
     height: 20px;
     position: relative;
@@ -117,18 +161,19 @@ textarea { resize: none; }
     margin: 3px;
 }
 
-.f-1, .f-2 {
-    flex: 1;
+.main-title {
+    font-size: 25px;
 }
 
 .main-title img {
     width: 70px;
-    height: 20px;
+    height: 25px;
 }
 
-.login {
-
+.main-page {
+    background-color: #B0BFBB;
 }
+
 
 /**-------------------------------CHOOSE-------------------------------------*/
 
@@ -291,7 +336,7 @@ textarea { resize: none; }
     box-shadow: 2px 2px grey;
 }
 
-#po-comm, .comm-title, #send, #comment, #coolfeed, .c-post, .col-2 {
+#po-comm, .comm-title, #send, #comment, #coolfeed, .c-post {
     text-align: center;
 }
 
@@ -313,6 +358,7 @@ textarea { resize: none; }
 
 .like {
     text-align: right;
+    display: flex;
 }
 
 .actcomment, .comments, #login {
@@ -335,7 +381,8 @@ textarea { resize: none; }
 
 .profile-user {
     margin-top: 1.5%;
-    width: 30%;
+    width: fit-content;
+    padding: 10px;
 }
 
 #green-dot {
@@ -410,6 +457,9 @@ textarea { resize: none; }
     height: 50px;
 }
 
+.unread {
+    background-color: #99ADAA;
+}
 
 /**-------------------------------EDIT POST-------------------------------------*/
 
@@ -429,4 +479,54 @@ textarea { resize: none; }
 
 .button {
     text-align: center;
+}
+
+/**---------------------------------PROFILE-----------------------------------------*/
+#pro-pic {
+    height: 250px;
+    width: auto;
+}
+
+#icon {
+    height: 30px;
+    width: auto;
+}
+
+#icon-sm {
+    height: 25px;
+    width: auto;
+}
+
+.prof-form {
+    padding-left: 35%;
+}
+
+.dark {
+    background-color: #829B95;
+    padding: 10px;
+}
+
+.prof-user {
+    width: fit-content;
+}
+
+#big-quote {
+    font-size: 25px;
+}
+
+#prof-details {
+    font-size: 17px;
+}
+
+#prof-name {
+    font-size: 20px;
+}
+
+.about_me {
+    max-width: 800px;
+    max-height: fit-content;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    line-height: 1.5;
+    padding-left: 10px;
 }

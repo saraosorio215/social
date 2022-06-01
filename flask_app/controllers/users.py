@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, request, redirect, session, flash
-from flask_app.models import user, post, message, avatar, comment
+from flask_app.models import user, post, message, avatar, comment, profile, like
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_bcrypt import Bcrypt
 bcrypt=Bcrypt(app)
@@ -31,22 +31,17 @@ def dash():
         avatar_data = {"id" : current_user.avatar_id}
         current_avatar = avatar.Avatar.getav_by_id(avatar_data)
         all_users = user.User.get_all_with_av()
-        current_prof = user.User.get_user_prof(data)
+        current_prof = profile.Profile.get_by_id(data)
+        
+        likes = post.Post.get_likes()
         return render_template("dashboard.html", all_users = all_users, current_user = current_user, all_comments=all_comments, all_posts = all_posts, current_avatar = current_avatar, current_prof = current_prof)
     return redirect("/")
-
 
 @app.route("/logout/")
 def logout():
     data = {"id": session['user_id']}
     user.User.offline(data)
     session.clear()
-    return redirect("/")
-
-@app.route("/profile/")
-def profile():
-    if "user_id" in session:
-        return render_template("profile.html")
     return redirect("/")
 
 
@@ -83,7 +78,8 @@ def login():
         return redirect("/")
     if not bcrypt.check_password_hash(person.password, data['password']):
         flash("Invalid Login!")
-        return redirect("/")
+        return redirect("/") 
     session["user_id"]= person.id
-    user.User.online(person.id)
+    data = {"id": person.id}
+    user.User.online(data)
     return redirect("/dashboard/")

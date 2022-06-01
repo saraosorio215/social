@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
-from flask_app.models import user
+from flask_app.models import user, like
 
 class Post():
     def __init__(self, data):
@@ -11,6 +11,7 @@ class Post():
         self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.like_count = data['like_count']
 
 
     @classmethod
@@ -31,7 +32,8 @@ class Post():
                     "avatar_id" : row["avatar_id"],
                     "online" : row["online"],
                     "created_at" : row["users.created_at"],
-                    "updated_at" : row["users.updated_at"]
+                    "updated_at" : row["users.updated_at"],
+                    "like_count" : row["like_count"]
                 }
                 temp_post.maker = user.User(user_data)
                 posts.append(temp_post)
@@ -50,6 +52,10 @@ class Post():
         query = "UPDATE posts SET title = %(title)s, content = %(content)s WHERE id = %(id)s;"
         return connectToMySQL("contact").query_db(query, data)
 
+    @classmethod
+    def update_likes(cls, data):
+        query = "UPDATE posts SET like_count = like_count + 1 WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)
     
     @classmethod
     def get_by_id(cls, data):
@@ -62,4 +68,9 @@ class Post():
     @classmethod
     def delete_post(cls, data):
         query = "DELETE FROM posts WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)
+
+    @classmethod
+    def get_likes(cls, data):
+        query = "SELECT user_id FROM likes WHERE post_id = %(id)s;"
         return connectToMySQL("contact").query_db(query, data)

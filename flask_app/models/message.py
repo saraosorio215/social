@@ -12,6 +12,7 @@ class Message():
         self.recipient_id = data["recipient_id"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
+        self.isRead = data["isRead"]
 
     
     @classmethod
@@ -38,7 +39,8 @@ class Message():
                     "password" : row["password"],
                     "avatar_id" : row["avatar_id"],
                     "created_at" : row["users.created_at"],
-                    "updated_at" : row["users.updated_at"]
+                    "updated_at" : row["users.updated_at"],
+                    "online" : row["online"]
                 }
                 temp_msg.maker = user.User(user_data)
                 messages.append(temp_msg)
@@ -62,7 +64,8 @@ class Message():
                     "password" : row["password"],
                     "avatar_id" : row["avatar_id"],
                     "created_at" : row["users.created_at"],
-                    "updated_at" : row["users.updated_at"]
+                    "updated_at" : row["users.updated_at"],
+                    "online" : row["online"]
                 }
                 temp_delivery.maker = user.User(user_data)
                 messages.append(temp_delivery)

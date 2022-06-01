@@ -12,6 +12,7 @@ class Comment():
         self.user_id = data["user_id"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
+        self.like_count = data['like_count']
 
 
     @classmethod
@@ -37,7 +38,8 @@ class Comment():
                     "password" : row["password"],
                     "avatar_id" : row["avatar_id"],
                     "created_at" : row["users.created_at"],
-                    "updated_at" : row["users.updated_at"]
+                    "updated_at" : row["users.updated_at"],
+                    "like_count" : row["like_count"]
                 }
                 temp_user.creator = user.User(user_data)
                 comments.append(temp_user)

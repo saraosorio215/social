@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, request, redirect, session
-from flask_app.models import message, user, avatar
+from flask_app.models import message, user, avatar, profile
 from flask_app.config.mysqlconnection import connectToMySQL
 
 
@@ -18,7 +18,8 @@ def send():
         deliveries = message.Message.get_all_outbox()
         avatar_data = {"id" : person.avatar_id}
         current_avatar = avatar.Avatar.getav_by_id(avatar_data)
-        return render_template("inbox.html", person=person, choices=choices, msgs=msgs, deliveries = deliveries, current_avatar = current_avatar)
+        current_prof = profile.Profile.get_by_id(user_data)
+        return render_template("inbox.html", person=person, choices=choices, msgs=msgs, deliveries = deliveries, current_avatar = current_avatar, current_prof = current_prof)
 
 
 @app.route("/unsend-msg/<int:id>")

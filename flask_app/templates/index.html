@@ -8,37 +8,45 @@
     <title>CoolNameHere</title>
 </head>
 <body>
-    <div class="row">
-        <div class="main-title">
-            <h1>Welcome to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+    <div class="main-page center">
+        <br />
+        <div class="main-title padding">
+            <h1>Welcome Back to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
         </div>
-        <div class="col-2">
+        <br />
+        <br />
+        <div class="login centered">
             <form action="/login/" method="post">
-                <div class="login">
-                        <h2>Login</h2>
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <p>{{message}}</p>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
-                        <div>
-                            <input type="hidden" name="which_form" value="login">
-                            <label>Email:</label>
-                            <input type="text" name="email">
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input type="password" name="password">
-                        </div>
-                        <input type="submit" value="Login" id="login">
-                    </div>
-                </form>
-            <div class="login">
+            <div>
+                <h2>Login</h2>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div>
+                    <input type="hidden" name="which_form" value="login">
+                    <label>Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="center">
+                    <input type="submit" value="Login" id="login">
+                </div>
+            </div>
+            </form>
+            <div class="marg-top-10">
                 <h3>Not a member? Join us! <a href="/welcome/">Register here!</a></h3>
             </div>
         </div>
+        <br />
+        <br />
+        <br />
     </div>
 </body>
 </html>
