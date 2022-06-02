@@ -32,8 +32,6 @@ def dash():
         current_avatar = avatar.Avatar.getav_by_id(avatar_data)
         all_users = user.User.get_all_with_av()
         current_prof = profile.Profile.get_by_id(data)
-        
-        likes = post.Post.get_likes()
         return render_template("dashboard.html", all_users = all_users, current_user = current_user, all_comments=all_comments, all_posts = all_posts, current_avatar = current_avatar, current_prof = current_prof)
     return redirect("/")
 

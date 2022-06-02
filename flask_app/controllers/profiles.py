@@ -42,6 +42,7 @@ def prof_setup():
 
 @app.route("/create/profile/<int:id>", methods=['POST'])
 def create_prof(id):
+    profuser_id = int(id);
     data = {
         "birthday" : request.form["birthday"],
         "hometown" : request.form["hometown"],
@@ -50,7 +51,7 @@ def create_prof(id):
         "fav_movie" : request.form["fav_movie"],
         "fav_quote" : request.form["fav_quote"],
         "about_me" : request.form["about_me"],
-        "user_id" : id,
+        "user_id" : profuser_id
     }
     profile.Profile.create_prof(data)
     return redirect("/dashboard/")
