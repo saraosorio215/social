@@ -8,17 +8,17 @@
     <title>Inbox</title>
 </head>
 <body>
-    <div class="header">
-        <div class="h-1">
+    <div class="header flexed al-cent box-shadow">
+        <div class="h-1 single padd-left-5">
             <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
         </div>
-        <div class="h-2">
+        <div class="h-2 single padd-left-5">
             <a href="/dashboard/" id="link">| Dashboard |</a>
             <a href="/logout/" id="link">Logout |</a>
         </div>
     </div>
-    <div class="page">
-        <div class="user-info">
+    <div class="page flexed light-grey">
+        <div class="user-info box-shadow">
             <div class="avatar">
                 <img id="picture" src="{{current_avatar.file_path}}">
             </div>
@@ -42,73 +42,112 @@
             </div>
             {% endif %}
         </div>
-        <form action="/send-msg/" method="post">
-        <div class="send">
-            <div class="send-1">
-                <h3>Send message to:</h3>
-                <select name="recipient_id" id="select">
-                    {% for choice in choices %}
-                        {% if choice.id != session["user_id"] %}
-                            <option value="{{choice.id}}">
-                                {{choice.first_name + " " + choice.last_name}}
-                            </option>
+        <div class="flexed big-marg box-shadow">
+            <div>
+                <div class="inbox bright marg-top-5">
+                    <div>
+                        <h2>Inbox</h2>
+                    </div>
+                    {% for msg in msgs %}
+                        {% if msg.recipient_id == session["user_id"] %}
+                            {% if msg.isRead == false %}
+                            <div class="padding-5 marg-top-5 marg-bottom-5 unread i-2">
+                            {% endif %}
+                            {% if msg.isRead == true %}
+                            <div class="padding-5 marg-top-5 marg-bottom-5 i-2">
+                            {% endif %}
+                            <div class="flexed sp-btw">
+                                <h3>From: {{msg.maker.first_name + " " + msg.maker.last_name}}</h3>
+                                {% if msg.isRead == false %}
+                                    <h4><button onClick="openPopup();"">Read</button></h4>
+                                {% endif %}
+                                {% if msg.isRead == true %}
+                                    <h4><a href="+">Open</a></h4>
+                                {% endif %}
+                            </div>
+                                <h4>Subject: {{msg.subject}}</h4>
+                                <h4>Received at: {{msg.created_at}}</h4>
+                            </div>
                         {% endif %}
                     {% endfor %}
-                </select>
-            </div>
-            <div class="send-2">
-                <label><h4>Subject:</h4></label>
-                <input type="text" name="subject" id="subject">
-            </div>
-            <div class="send-3">
-                <label><p>Message:</p></label>
-                <textarea name="msg_text" cols="30" rows="4" id="message" wrap="hard"></textarea>
-            </div>
-            <div class="send-4">
-                <input type="submit" value="Send" id="send">
-            </div>
-        </div>
-        </form>
-        <div class="inbox">
-            <div class="i-1">
-                <h2>Inbox</h2>
-            </div>
-            {% for msg in msgs %}
-                {% if msg.recipient_id == session["user_id"] %}
-                    {% if msg.isRead == false %}
-                    <div class="i-2 unread">
-                    {% endif %}
-                    {% if msg.isRead == true %}
-                    <div class="i-2">
-                    {% endif %}
-                    <div class="flex">
-                        <h3>From: {{msg.maker.first_name + " " + msg.maker.last_name}}</h3>
-                        <h4><a href="+">Open</a></h4>
-                    </div>
-                        <h4>Subject: {{msg.subject}}</h4>
-                        <h4>Received at: {{msg.created_at}}</h4>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="outbox">
-            <div class="o-1">
-                <h2>Outbox</h2>
-            </div>
-            {% for delivery in deliveries %}
-                {% if delivery.user_id == session["user_id"] %}
-                <div class="o-2">
-                    <div class="o-3">
-                        <h3>Sent to: {{delivery.maker.first_name + " " + delivery.maker.last_name}}</h3>
-                        <a href="/unsend-msg/{{delivery.id}}">Unsend</a>
-                    </div>
-                    <h4>Subject: {{delivery.subject}}</h4>
-                    <h4>Sent at: {{delivery.created_at}}</h4>
-                    <p>{{delivery.msg_text}}</p>
                 </div>
-                {% endif %}
-            {% endfor %}
+                <div class="outbox colored">
+                    <div>
+                        <h2>Outbox</h2>
+                    </div>
+                    {% for delivery in deliveries %}
+                        {% if delivery.user_id == session["user_id"] %}
+                        <div class="o-2 padding-5 marg-top-5 marg-bottom-5">
+                            <div class="flexed sp-btw">
+                                <h3>Sent to: {{delivery.maker.first_name + " " + delivery.maker.last_name}}</h3>
+                                {% if delivery.isRead == 0 %}
+                                    <a href="/unsend-msg/{{delivery.id}}">Unsend</a>
+                                {% endif %}
+                            </div>
+                            <div class="flexed sp-btw">
+                                <div>
+                                    <h4>Subject: {{delivery.subject}}</h4>
+                                </div>
+                                <div>
+                                {% if delivery.isRead == 0 %}
+                                    <p id="red-dot">UNOPENED</p>
+                                {% endif %}
+                                {% if delivery.isRead == 1 %}
+                                    <p id="green-dot">OPENED</p>
+                                {% endif %}
+                                </div>
+                            </div>
+                            <h4>Sent at: {{delivery.created_at}}</h4>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="send padding-20 box-shadow">
+            <form action="/send-msg/" method="post">
+                <div class="flexed padding-5 marg-bottom-10 just-cent">
+                    <h2 class="padd-right">Send message to:</h2>
+                    <select name="recipient_id" id="select">
+                        {% for choice in choices %}
+                            {% if choice.id != session["user_id"] %}
+                                <option value="{{choice.id}}">
+                                    {{choice.first_name + " " + choice.last_name}}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flexed padding-5 marg-bottom-10 al-cent">
+                    <label><h3>Subject:</h3></label>
+                    <input type="text" name="subject" id="subject">
+                </div>
+                <div class="flexed padding-5">
+                    <label><h3>Message:</h3></label>
+                    <textarea name="msg_text" cols="30" rows="4" id="message" wrap="hard"></textarea>
+                </div>
+                <div class="padding-5 center marg-top-5">
+                    <button class="posted center" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+        <div id="test" class="popup" style="display:none;">
+            This is a test message
+            <div class="cancel" onclick="closePopup();"></div>
         </div>
     </div>
+
+    <script>
+        function openPopup() {
+        document.getElementById('test').style.display = 'block';
+        $('#test').fadeIn(1000);
+        }
+
+        function closePopup() {
+        document.getElementById('test').style.display = 'none';
+        $('#test').fadeOut(500);
+        }
+    </script>
+
 </body>
 </html>

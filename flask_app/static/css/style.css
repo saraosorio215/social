@@ -4,22 +4,40 @@
     font-family: monospace;
 }
 
-.header, .page, .o-3, .edit-1, .edit-2, .flex, .f-1 {
-    display: flex;
-}
+/**************BACKGROUND COLORS*************************/
 
-.header, .user-info, .whole, .profile-user {
+.whole, .profile-user, .like-button, .comment-title-line {
     background-color: #B0BFBB;
 }
 
-.c-post, .page, .colored {
+.colored, .unread, .inbox {
+    background-color: #B8B8B8;
+}
+
+.bright, .send {
+    background-color: #adba9b;
+}
+
+.light-grey {
+    background-color: #CED7DF;
+}
+
+.header, .user-info {
+    background-color: #B1CAD3;
+}
+
+.inbox, .popup {
     background-color: #CDDDDD;
 }
 
+.actpost, .dark {
+    background-color: #99ADAA;
+}
+
+/**********************************************************/
 
 .header {
     padding-bottom: 3px;
-    align-items: center;
     position: fixed;
     top: 0px;
     width: 100%;
@@ -32,16 +50,81 @@
 textarea { resize: none; }
 
 /**-----------------------------GENERIC------------------------------------*/
+
+.single {
+    flex: 1;
+}
+
+.hundred {
+    height: 100%;
+}
+
+.fit-cont {
+    width: fit-content;
+}
+
+.max-width {
+    max-width: 700px;
+}
+
 .padding {
     padding: 10px;
+}
+
+.padding-3 {
+    padding: 3px;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+.padding-20 {
+    padding: 20px;
 }
 
 .padd-bottom {
     padding-bottom: 5px;
 }
 
+.padd-bottom-10 {
+    padding-bottom: 10px;
+}
+
 .padd-top {
     padding-top: 5px;
+}
+
+.padd-top-10 {
+    padding-top: 10px;
+}
+
+.padd-left-5 {
+    padding-left: 5px;
+}
+
+.padd-left-10 {
+    padding-left: 10px;
+}
+
+.padd-left-20 {
+    padding-left: 20px;
+}
+
+.padd-right {
+    padding-right: 5px;
+}
+
+.margin {
+    margin: 5px;
+}
+
+.big-marg {
+    margin-left: 12%;
 }
 
 .marg-left-5 {
@@ -52,6 +135,10 @@ textarea { resize: none; }
     margin-left: 10px;
 }
 
+.marg-left-20 {
+    margin-left: 20px;
+}
+
 .marg-right-10 {
     margin-right: 10px;
 }
@@ -60,8 +147,24 @@ textarea { resize: none; }
     margin-right: 20px;
 }
 
+.marg-top-5 {
+    margin-top: 5px;
+}
+
 .marg-top-10 {
     margin-top: 10px;
+}
+
+.marg-top-20 {
+    margin-top: 20px;
+}
+
+.marg-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.marg-bottom-5 {
+    margin-bottom: 5px;
 }
 
 .text-left {
@@ -84,6 +187,10 @@ textarea { resize: none; }
     justify-content: space-between;
 }
 
+.just-left {
+    justify-content: left;
+}
+
 .just-cent {
     justify-content: center;
 }
@@ -94,6 +201,10 @@ textarea { resize: none; }
 
 .sp-ar {
     justify-content: space-around;
+}
+
+.sp-even {
+    justify-content: space-evenly;
 }
 
 .al-cent {
@@ -112,23 +223,32 @@ textarea { resize: none; }
     letter-spacing: 3px;
 }
 
+.underlined {
+    border-bottom: 3px solid #CDDDDD;
+}
+
 /**------------------------------BORDERS-------------------------------------*/
 
-.login, .avatar, .i-2, .o-2 {
+.login, .avatar, .o-2, .watch-button, .profile-user {
     border: 2px solid #CDDDDD;
 }
 
-.outbox {
-    border-left: 2px #CDDDDD solid;
+.i-2 {
+    border: 2px solid #B8B8B8;
 }
 
-.header, .send {
+.outbox, .inbox {
+    border-right: 2px #CDDDDD solid;
+}
+
+.header, .inbox {
     border-bottom: 2px solid #CDDDDD;
 }
 
-.user-info, .send {
+.user-info {
     border-right: 2px solid #CDDDDD;
 }
+
 
 /**------------------------------INDEX-------------------------------------*/
 
@@ -142,10 +262,7 @@ textarea { resize: none; }
 }
 
 .login h2 {
-    text-align: center;
     font-weight: 100;
-    margin-bottom: 8px;
-    letter-spacing: 3px;
 }
 
 .form input[type=text], .form input[type=password], .login input[type=text], .login input[type=password] {
@@ -170,38 +287,12 @@ textarea { resize: none; }
     height: 25px;
 }
 
-.main-page {
-    background-color: #B0BFBB;
-}
-
 
 /**-------------------------------CHOOSE-------------------------------------*/
 
-.whole {
-    padding-bottom: 10px;
-}
-
-.welcome, .av-title, .av-imgs h3, .form, .whole {
-    text-align: center;
-}
-
-.form, .f-1 {
-    justify-content: center;
-}
-
-.welcome {
-    letter-spacing: 3px;
-    font-size: 20px;
-    padding: 10px;
-}
-
-.welcome img, .col-1 img {
+#choose-logo, .col-1 img {
     height: 20px;
     width: auto;
-}
-
-.av-title {
-    padding-top: 10px;
 }
 
 .av-imgs {
@@ -214,18 +305,8 @@ textarea { resize: none; }
     width: 80px;
 }
 
-.p-title, .imgs1, .imgs2 {
-    display: flex;
-    justify-content: space-between;
-}
-
 .low-img, .high-img {
     border: 2px white solid;
-    padding: 10px;
-}
-
-.imgs1, .imgs2 {
-    margin-top: 40px;
 }
 
 .f-1 label {
@@ -246,13 +327,13 @@ textarea { resize: none; }
 
 
 /**-------------------------------DASHBOARD-------------------------------------*/
-
-.h-1, .h-2 {
-    flex: 1;
+.watch-button {
+    padding: 0.3em 0.5em;
 }
 
-.h-1 {
-    padding-left: 5px;
+
+.box-shadow, .profile-user:hover, .o-2:hover, .i-2:hover, .actcomment:hover {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .h-2 {
@@ -271,16 +352,12 @@ textarea { resize: none; }
 }
 
 .user-info {
-    width: 150px;
+    width: fit-content;
     padding: 15px;
 }
 
 .user-info h3 {
     margin-top: 5px;
-}
-
-.c-post, .actpost {
-    margin-top: 10px;
 }
 
 .c-post {
@@ -291,16 +368,11 @@ textarea { resize: none; }
 
 .actpost {
     margin-bottom: 20px;
-    background-color: #99ADAA;
     padding: 12px;
-}
-.c-post h2 {
-    margin-bottom: 5px;
 }
 
 .v-post {
     flex: 2;
-    margin-top: 10px;
     margin-right: 2.5%;
     margin-left: 1.25%;
     height: 100%;
@@ -330,20 +402,35 @@ textarea { resize: none; }
     padding: 3px;
 }
 
-#posted, #comment, #send, #login {
+#comment, #send, #login, #like-btn {
     border: none;
     padding: 3px;
     box-shadow: 2px 2px grey;
 }
 
-#po-comm, .comm-title, #send, #comment, #coolfeed, .c-post {
-    text-align: center;
+.posted, .posted-comm {
+    border-color: #ffffff;
+    cursor: pointer;
+    padding: 0.3em 0.5em;
+    font-size: 1em;
+    color: black;
+    background-position: 25%;
+    background-size: 400%;
+    -webkit-transition: background 500ms ease-in-out, color 500ms ease-in-out;
+    transition: background 500ms ease-in-out, color 500ms ease-in-out;
 }
 
-#edited {
-    color: #DE3C4B;
-    text-align: left;
-    padding-left: 3px;
+.posted-comm {
+    background-image: linear-gradient(45deg, transparent 50%, #B1CAD3 50%);
+}
+
+.posted {
+    background-image: linear-gradient(45deg, transparent 50%, #cddbb9 50%);
+}
+
+.posted:hover, .posted-comm:hover {
+    color: #ffffff;
+    background-position: 100%;
 }
 
 #link {
@@ -356,22 +443,24 @@ textarea { resize: none; }
     font-size: 25px;
 }
 
-.like {
-    text-align: right;
-    display: flex;
-}
-
 .actcomment, .comments, #login {
     margin-top: 8px;
 }
 
 .actcomment {
-    border: 1px solid black;
-    padding: 5px;
+    border: 2px solid #B0BFBB;
 }
 
 #comment_text {
     padding: 3px;
+    margin-top: 5px;
+    border: none;
+    width: 90%;
+    height: 50px;
+}
+
+#comm-text {
+    font-size: 14px;
 }
 
 #profile-pic {
@@ -390,75 +479,115 @@ textarea { resize: none; }
 }
 
 #red-dot {
-    color: red;
+    color: rgb(222, 14, 14);
+}
+
+#icon-tiny {
+    height: 20px;
+    width: auto;
+}
+
+#icon-tiny-text {
+    font-size: 18px;
+}
+
+.whole-button {
+    width: fit-content;
+}
+
+.whole-button a, .edit-links a {
+    text-decoration: none;
+    color: black;
+}
+
+.hidden {
+    width: 7%;
 }
 
 /**-------------------------------INBOX-------------------------------------*/
 
-.page {
-    padding-bottom: 40px;
-}
-
-.send-1, .send-2, .send-3, .send-4 {
-    display: flex;
-    padding: 5px;
-}
-
-.o-3, .flex {
-    justify-content: space-between;
-}
-
-.inout {
-    justify-content: space-evenly;
-}
-
 .inbox, .outbox {
-    flex: 2;
-    padding-left : 15px;
-    padding-top: 5px;
-    margin-right: 15px;
-    width: 100%;
-}
-
-.i-2, .o-2 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
-}
-
-.send {
-    flex: 1;
-    padding: 15px;
-    align-items: left;
+    padding: 10px 15px 5px 15px;
+    height: 300px;
+    width: 500px;
+    overflow-y: scroll;
 }
 
 #subject, #message, #select {
-    border: 1px #e9ecef solid;
+    border: 1px #cacdcf solid;
     margin-left: 3px;
+}
+
+#subject, #message, #select, #title, #content, #comment_text {
     background-color: #dee2e6;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 #subject, #message {
-    width: 400px;
+    width: 30vw;
 }
 
 #message {
-    height: 120px;
+    height: 15vw;
 }
 
-.comments {
-    text-align: center;
+#subject {
+    height: 25px;
 }
 
-#comment_text {
-    margin-top: 5px;
-    border: none;
-    width: 75%;
-    height: 50px;
+.send {
+    padding-right: 30px;
 }
 
-.unread {
-    background-color: #99ADAA;
+.inbox::-webkit-scrollbar, .outbox::-webkit-scrollbar {
+    width: 20px;
+    background-color: #cacdcf;
+}
+
+  /* Track */
+.inbox::-webkit-scrollbar-track, .outbox::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+
+.inbox::-webkit-scrollbar-thumb, .outbox::-webkit-scrollbar-thumb {
+    background: #b5ccd4bb;
+}
+
+.popup {
+    position:fixed;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    right:0px;  
+    margin:auto;
+    width:500px;
+    height:500px;
+    font-family:verdana;
+    font-size:13px;
+    padding:10px;
+    border:2px solid grey;
+    z-index:100000000000000000;
+}
+
+.cancel {
+    display:relative;
+    cursor:pointer;
+    margin:0;
+    float:right;
+    height:10px;
+    width:14px;
+    padding:0 0 5px 0;
+    background-color: white;
+    text-align:center;
+    font-weight:bold;
+    font-size:11px;
+    color:white;
+    border-radius:3px;
+    z-index:100000000000000000;
+}
+
+.cancel:hover {
+    background:black;
 }
 
 /**-------------------------------EDIT POST-------------------------------------*/
@@ -475,10 +604,6 @@ textarea { resize: none; }
     box-shadow: 2px 2px grey;
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.button {
-    text-align: center;
 }
 
 /**---------------------------------PROFILE-----------------------------------------*/
@@ -501,15 +626,6 @@ textarea { resize: none; }
     padding-left: 35%;
 }
 
-.dark {
-    background-color: #829B95;
-    padding: 10px;
-}
-
-.prof-user {
-    width: fit-content;
-}
-
 #big-quote {
     font-size: 25px;
 }
@@ -523,7 +639,6 @@ textarea { resize: none; }
 }
 
 .about_me {
-    max-width: 800px;
     max-height: fit-content;
     text-overflow: ellipsis;
     overflow-wrap: normal;

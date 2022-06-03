@@ -8,17 +8,17 @@
     <title>Edit Post</title>
 </head>
 <body>
-    <div class="header">
-        <div class="h-1">
+    <div class="header flexed al-cent box-shadow">
+        <div class="h-1 single padd-left-5">
             <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
         </div>
-        <div class="h-2">
-            <a href="/inbox/" id="link">Inbox</a>
-            <a href="/logout/" id="link">Logout</a>
+        <div class="h-2 single padd-left-5">
+            <a href="/inbox/" id="link">| Inbox | </a>
+            <a href="/logout/" id="link"> Logout |</a>
         </div>
     </div>
-    <div class="page">
-        <div class="user-info">
+    <div class="page flexed colored">
+        <div class="user-info box-shadow">
             <div class="avatar">
                 <img id="picture" src="{{current_avatar.file_path}}">
             </div>
@@ -31,15 +31,15 @@
         </div>
         <div class="edit">
             <form action="/update/post/{{info.id}}" method="post">
-                <div class="edit-1">
+                <div class="flexed">
                     <label><h3>Title:</h3></label>
                     <input type="text" name="title" value="{{info.title}}" id="title">
                 </div>
-                <div class="edit-2">
+                <div class="flexed">
                     <label><h3>Post:</h3></label>
                     <textarea name="content" cols="30" rows="4" id="content" wrap="hard">{{info.content}}</textarea>
                 </div>
-                <div class="button">
+                <div class="center">
                     <a href="/dashboard/">Go Back</a>
                     <input type="submit" value = "Update" id="update">
                 </div>

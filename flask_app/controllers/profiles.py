@@ -4,7 +4,6 @@ from flask_app.models import profile, user, avatar
 from flask_app.config.mysqlconnection import connectToMySQL
 from datetime import date
 import math
-import json
 
 #*---------------------------------DISPLAY ROUTES-------------------------------------
 @app.route("/profile/<int:id>")
@@ -13,6 +12,9 @@ def user_profile(id):
         user_data = {"id": session["user_id"]}
         curr_user = user.User.get_by_id(user_data)
         user_prof = profile.Profile.get_by_id(user_data)
+        av_id = {"id": curr_user.avatar_id}
+        user_avi = avatar.Avatar.getav_by_id(av_id)
+        print(user_avi)
         data = {"id": id}
         profile_user = user.User.get_by_id(data)
         curr_id = {"id": profile_user.avatar_id}
@@ -25,7 +27,7 @@ def user_profile(id):
         now = int(now)
         bday = int(bday)
         age = math.floor(now - bday)
-        return render_template("profile.html", profile_user = profile_user, current_avatar = current_avatar, curr_profile = curr_profile, birth_date=birth_date, age=age, curr_user=curr_user, user_prof = user_prof)
+        return render_template("profile.html", profile_user = profile_user, current_avatar = current_avatar, curr_profile = curr_profile, birth_date=birth_date, age=age, curr_user=curr_user, user_prof = user_prof, user_avi = user_avi)
     return redirect("/")
 
 

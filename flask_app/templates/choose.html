@@ -8,19 +8,19 @@
     <title>Welcome!</title>
 </head>
 <body>
-    <div class="header">
-        <div class="h-1">
+    <div class="header flexed">
+        <div class="h-1 single padd-left-5">
             <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
         </div>
-        <div class="h-2">
+        <div class="h-2 single padd-left-5">
             <a href="/">Back to Login</a>
         </div>
     </div>
-    <div class="whole">
-        <div class="welcome">
-            <h1>Welcome to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace!</h1>
+    <div class="whole padd-bottom-10 center">
+        <div class="padding-10 center letter-spc" id="prof-name">
+            <h1>Welcome to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo" id="choose-logo">lPlace!</h1>
         </div>
-        <div class="form">
+        <div class="form just-cent center">
             <form action="/register/" method="post">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -29,54 +29,54 @@
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
-                <div class="f-1">
+                <div class="f-1 just-cent flexed">
                     <label>First Name:</label>
                     <input type="text" name="first_name">
                 </div>
-                <div class="f-1">
+                <div class="f-1 just-cent flexed">
                     <label>Last Name:</label>
                     <input type="text" name="last_name">
                 </div>
-                <div class="f-1">
+                <div class="f-1 just-cent flexed">
                     <label>Username:</label>
                     <input type="text" name="username">
                 </div>
-                <div class="f-1">
+                <div class="f-1 just-cent flexed">
                     <label>Email:</label>
                     <input type="text" name="email">
                 </div>
-                <div class="f-1">
+                <div class="f-1 just-cent flexed">
                     <label>Password:</label>
                     <input type="password" name="password">
                 </div>
-                <div class="f-1">
+                <div class="f-1 just-cent flexed">
                     <label>Confirm Password:</label>
                     <input type="password" name="conf_password">
                 </div>
         </div>
-        <div class="av-title">
+        <div class="center marg-top-20">
             <h1>Choose your avatar</h1>
         </div>
-        <div class="av-imgs">
-            <div class="imgs1">
+        <div class="av-imgs padd-top-10">
+            <div class="marg-top-20 flexed sp-btw">
                 {% for avatar in avatars %}
                     {% if (avatar.id) < 6 %}
                         <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
                         <label for ="{{avatar.id}}">
-                            <div class="low-img">
+                            <div class="low-img padding-10">
                                 <img src="{{avatar.file_path}}" alt="option 10">
-                                <h3>{{avatar.name}}</h3>
+                                <h3 class="center">{{avatar.name}}</h3>
                             </div>
                         </label>
                     {% endif %}
                 {% endfor %}
             </div>
-            <div class="imgs2">
+            <div class="marg-top-20 flexed sp-btw">
                 {% for avatar in avatars %}
                     {% if (avatar.id) > 5 %}
                         <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
                         <label for ="{{avatar.id}}">
-                            <div class="high-img">
+                            <div class="high-img padding-10">
                                 <img src="{{avatar.file_path}}" alt="option 10">
                                 <h3>{{avatar.name}}</h3>
                             </div>

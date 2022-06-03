@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
-    <title>CoolNameHere</title>
+    <title>CoolPlace</title>
 </head>
 <body>
-    <div class="main-page center">
+    <div class="colored center">
         <br />
         <div class="main-title padding">
             <h1>Welcome Back to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
@@ -18,7 +18,7 @@
         <div class="login centered">
             <form action="/login/" method="post">
             <div>
-                <h2>Login</h2>
+                <h2 class="center letter-spc">Login</h2>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}

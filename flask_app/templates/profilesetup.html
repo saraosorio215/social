@@ -8,7 +8,7 @@
     <title>Profile Setup</title>
 </head>
 <body>
-    <div class="header">
+    <div class="header flexed al-cent box-shadow">
         <div class="h-1">
             <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
         </div>
@@ -17,7 +17,7 @@
             <a href="/logout/" id="link">Logout |</a>
         </div>
     </div>
-    <div class="page center prof-form">
+    <div class="page center prof-form colored flexed">
         <form action="/create/profile/{{curr_user.id}}" method="post">
             <div>
                 <label>Birthday: </label>
@@ -51,6 +51,7 @@
             <div class="center">
                 <input type="submit" value="Update Profile" id="posted">
             </div>
+            <br />
         </form>
     </div>
 </body>
