@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="light-grey page">
-        <div class="flexed">
+        <div class="flexed sp-btw">
             <div class="user-info box-shadow">
                 <div class="avatar">
                     <img id="picture" src="{{user_avi.file_path}}">
@@ -46,9 +46,10 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="padding dark centered">
-                <div class="flexed">
-                    <div class="flexed">
+            <div></div>
+            <div class="centered">
+                <div class="flexed just-cent">
+                    <div class="flexed padding-20 dark box-shadow marg-top-20 marg-right-20">
                         <div class="marg-right-10">
                             <img id="pro-pic" src="{{current_avatar.file_path}}" alt="avatar">
                         </div>
@@ -85,7 +86,7 @@
                                     <img src="{{url_for('static',filename='img/pin-icon.jpg')}}" alt="location" id="icon-sm">
                                 </div>
                                 <div class="marg-left-5">
-                                    <h3 id="prof-details">{{curr_profile.location}}</h3>
+                                    <h3 id="prof-details" class="marg-left-5">{{curr_profile.location}}</h3>
                                 </div>
                             </div>
                             <div class="flexed al-cent padd-bottom">
@@ -107,32 +108,75 @@
                             <br />
                         </div>
                     </div>
-                    <div class="marg-left-20 fit-cont max-width">
+                    <div class="max-width bright box-shadow marg-top-20 padding marg-left-20">
                         <div class="center padd-bottom padd-top">
                             <h2 class="letter-spc">About Me</h2>
                         </div>
-                        <div class="about_me">
+                        <div class="about_me padding eighty">
                             {{curr_profile.about_me}}
-                        </div>
-                        <br />
-                        <br />
-                        <div class="flexed just-cent al-bottom">
-                            <div>
-                                <img src="{{url_for('static',filename='img/quote-left.jpg')}}" alt="movie" id="icon">
-                            </div>
-                            <div>
-                                <h3 id="big-quote">{{curr_profile.fav_quote}}</h3>
-                            </div>
-                            <div>
-                                <img src="{{url_for('static',filename='img/quote-right.jpg')}}" alt="movie" id="icon-sm">
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="center">
-                    <h2>Comments</h2>
+                <br />
+                <br />
+                <div class="flexed al-cent just-cent">
+                    <div class="marg-right-5">
+                        <img src="{{url_for('static',filename='img/quote-left.jpg')}}" alt="movie" id="icon">
+                    </div>
+                    <div>
+                        <h3 id="big-quote">{{curr_profile.fav_quote}}</h3>
+                    </div>
+                    <div class="marg-left-5">
+                        <img src="{{url_for('static',filename='img/quote-right.jpg')}}" alt="movie" id="icon">
+                    </div>
                 </div>
+                <br />
+                <br />
+                <div class="flexed just-cent">
+                    <div class="dark-blue padd-left-30 padd-right-30 padd-bottom-20 padd-top-20 box-shadow marg-right-20">
+                        <div>
+                            <h2 class="center padd-bottom-10">Leave a comment!</h2>
+                        </div>
+                        <div>
+                            <form action="/new_procomm/" method="post">
+                                <input type="hidden" name="profile_id" value="{{curr_profile.id}}">
+                                <input type="hidden" name="user_id" value="{{curr_user.id}}">
+                                <div class="marg-bottom-10">
+                                    <label>Title:</label>
+                                    <input type="text" name="comment_title" id="title">
+                                </div>
+                            </div>
+                            <div>
+                                <textarea name="comment_text" cols="30" rows="4" placeholder="What do you want to say?" id="content" wrap="hard"></textarea>
+                            </div>
+                            <div class="marg-top-5 center">
+                                <button class="posted-comm" type="submit" role="button">Post Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="colored box-shadow padding-20 max-width marg-left-20">
+                        <div>
+                            <h2 class="center letter-spc">Comments</h2>
+                        </div>
+                        <div>
+                            {% for comm in all_procomms %}
+                            <div class="pro-comm padding-5 marg-top-10">
+                                <div class="marg-bottom-10">
+                                    <h3>{{comm.comment_title}}</h3>
+                                    <p>{{comm.comment_text}}</p>
+                                </div>
+                                <div class="top-border fit-cont">
+                                    <p class="padd-left-5 padd-right">{{comm.created_at}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
             </div>
+            <div></div>
         </div>
     </div>
 </body>

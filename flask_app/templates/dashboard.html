@@ -60,20 +60,20 @@
                     <div>
                         <textarea name="content" cols="30" rows="4" placeholder="Say it!" id="content" wrap="hard"></textarea>
                     </div>
-                    <div>
+                    <div class="marg-top-5">
                         <button class="posted" type="submit" role="button">Post to Newsfeed</button>
                     </form>
                 </div>
             </div>
             <br />
             <br />
-            <div class="colored box-shadow">
+            <div class="dark-blue box-shadow">
                 <div class="padd-bottom padd-top">
                     <h2 class="marg-top-10">All Users</h2>
                 </div>
                 <div class="flexed padd-bottom-10">
                     {% for user in all_users %}
-                    <div class="profile-user margin marg-left-10">
+                    <div class="profile-user margin marg-left-10 dark">
                         <a href="/profile/{{user.id}}">
                             <img id="profile-pic" src="{{user.maker.file_path}}">
                         </a>
@@ -98,7 +98,7 @@
                 <h2 id="coolfeed" class="center">C<img src="{{url_for('static',filename='img/sunglasses1.jpg')}}" alt="logo">lFeed</h2>
             </div>
             {% for post in all_posts %}
-            <div class="actpost marg-top-10 box-shadow">
+            <div class="actpost marg-top-10 box-shadow colored">
                 <div class="flexed">
                     <div class="hidden"></div>
                     <div class="padd-bottom centered">

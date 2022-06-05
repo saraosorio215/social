@@ -6,15 +6,15 @@
 
 /**************BACKGROUND COLORS*************************/
 
-.whole, .profile-user, .like-button, .comment-title-line {
+.whole, .like-button, .comment-title-line, .pro-comm {
     background-color: #B0BFBB;
 }
 
-.colored, .unread, .inbox {
-    background-color: #B8B8B8;
+.colored {
+    background-color: #909c8e;
 }
 
-.bright, .send {
+.bright {
     background-color: #adba9b;
 }
 
@@ -22,16 +22,20 @@
     background-color: #CED7DF;
 }
 
-.header, .user-info {
+.header, .user-info, .light-blue {
     background-color: #B1CAD3;
 }
 
-.inbox, .popup {
+.popup, .light-color {
     background-color: #CDDDDD;
 }
 
-.actpost, .dark {
+.dark {
     background-color: #99ADAA;
+}
+
+.dark-blue {
+    background-color: #80a1ad;
 }
 
 /**********************************************************/
@@ -59,12 +63,12 @@ textarea { resize: none; }
     height: 100%;
 }
 
-.fit-cont {
-    width: fit-content;
+.eighty {
+    height: 80%;
 }
 
-.max-width {
-    max-width: 700px;
+.fit-cont {
+    width: fit-content;
 }
 
 .padding {
@@ -95,12 +99,20 @@ textarea { resize: none; }
     padding-bottom: 10px;
 }
 
+.padd-bottom-20 {
+    padding-bottom: 20px;
+}
+
 .padd-top {
     padding-top: 5px;
 }
 
 .padd-top-10 {
     padding-top: 10px;
+}
+
+.padd-top-20 {
+    padding-top: 20px;
 }
 
 .padd-left-5 {
@@ -115,16 +127,20 @@ textarea { resize: none; }
     padding-left: 20px;
 }
 
+.padd-left-30 {
+    padding-left: 30px;
+}
+
 .padd-right {
     padding-right: 5px;
 }
 
-.margin {
-    margin: 5px;
+.padd-right-30 {
+    padding-right: 30px;
 }
 
-.big-marg {
-    margin-left: 12%;
+.margin {
+    margin: 5px;
 }
 
 .marg-left-5 {
@@ -137,6 +153,10 @@ textarea { resize: none; }
 
 .marg-left-20 {
     margin-left: 20px;
+}
+
+.marg-right-5 {
+    margin-right: 5px;
 }
 
 .marg-right-10 {
@@ -157,6 +177,10 @@ textarea { resize: none; }
 
 .marg-top-20 {
     margin-top: 20px;
+}
+
+.marg-top-percent {
+    margin-top: 2.5%;
 }
 
 .marg-bottom-10 {
@@ -215,33 +239,17 @@ textarea { resize: none; }
     align-items: baseline;
 }
 
-.half {
-    width: 40%;
-}
-
 .letter-spc {
     letter-spacing: 3px;
 }
 
-.underlined {
-    border-bottom: 3px solid #CDDDDD;
-}
-
 /**------------------------------BORDERS-------------------------------------*/
 
-.login, .avatar, .o-2, .watch-button, .profile-user {
+.login, .avatar, .watch-button, .profile-user, .o-2 {
     border: 2px solid #CDDDDD;
 }
 
-.i-2 {
-    border: 2px solid #B8B8B8;
-}
-
-.outbox, .inbox {
-    border-right: 2px #CDDDDD solid;
-}
-
-.header, .inbox {
+.header {
     border-bottom: 2px solid #CDDDDD;
 }
 
@@ -249,6 +257,27 @@ textarea { resize: none; }
     border-right: 2px solid #CDDDDD;
 }
 
+.underlined {
+    border-bottom: 3px solid #CDDDDD;
+}
+
+.top-border {
+    border-top: 2px solid #909c8e;
+}
+
+.actcomment {
+    border: 2px solid #B0BFBB;
+}
+
+.pro-comm {
+    border-radius: 240px 20px 250px 20px/20px 250px 20px 240px;
+    border:solid 3px #B0BFBB;
+}
+
+.about_me {
+    border-radius: 240px 20px 250px 20px/20px 250px 20px 240px;
+    border:solid 3px #CDDDDD;
+}
 
 /**------------------------------INDEX-------------------------------------*/
 
@@ -332,7 +361,7 @@ textarea { resize: none; }
 }
 
 
-.box-shadow, .profile-user:hover, .o-2:hover, .i-2:hover, .actcomment:hover {
+.box-shadow, .profile-user:hover, .o-2:hover, .i-2:hover, .actcomment:hover, .pro-comm:hover {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
@@ -391,12 +420,12 @@ textarea { resize: none; }
 }
 
 #title {
-    width: 400px;
+    width: 500px;
     height: 20px;
 }
 
 #content {
-    width: 450px;
+    width: 550px;
     height: 150px;
     text-align: left;
     padding: 3px;
@@ -445,10 +474,6 @@ textarea { resize: none; }
 
 .actcomment, .comments, #login {
     margin-top: 8px;
-}
-
-.actcomment {
-    border: 2px solid #B0BFBB;
 }
 
 #comment_text {
@@ -508,8 +533,8 @@ textarea { resize: none; }
 
 .inbox, .outbox {
     padding: 10px 15px 5px 15px;
-    height: 300px;
-    width: 500px;
+    height: 350px;
+    width: 600px;
     overflow-y: scroll;
 }
 
@@ -536,11 +561,19 @@ textarea { resize: none; }
 }
 
 .send {
-    padding-right: 30px;
+    padding-right: 35px;
+    height: fit-content;
+}
+
+.middle {
+    width: 8%;
+}
+
+.twenty {
+    width: 20%;
 }
 
 .inbox::-webkit-scrollbar, .outbox::-webkit-scrollbar {
-    width: 20px;
     background-color: #cacdcf;
 }
 
@@ -549,8 +582,12 @@ textarea { resize: none; }
     box-shadow: inset 0 0 5px grey;
 }
 
-.inbox::-webkit-scrollbar-thumb, .outbox::-webkit-scrollbar-thumb {
-    background: #b5ccd4bb;
+.inbox::-webkit-scrollbar-thumb {
+    background: #99ADAA;
+}
+
+.outbox::-webkit-scrollbar-thumb {
+    background-color: #CDDDDD;
 }
 
 .popup {
@@ -613,7 +650,7 @@ textarea { resize: none; }
 }
 
 #icon {
-    height: 30px;
+    height: 15px;
     width: auto;
 }
 
@@ -644,4 +681,9 @@ textarea { resize: none; }
     overflow-wrap: normal;
     line-height: 1.5;
     padding-left: 10px;
+    overflow-y: auto;
+}
+
+.max-width {
+    width: 45%;
 }

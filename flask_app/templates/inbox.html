@@ -42,16 +42,17 @@
             </div>
             {% endif %}
         </div>
-        <div class="flexed big-marg box-shadow">
-            <div>
-                <div class="inbox bright marg-top-5">
+        <div class="twenty"></div>
+        <div class="flexed">
+            <div class="marg-top-20">
+                <div class="inbox light-color box-shadow padd-top-10">
                     <div>
                         <h2>Inbox</h2>
                     </div>
                     {% for msg in msgs %}
                         {% if msg.recipient_id == session["user_id"] %}
                             {% if msg.isRead == false %}
-                            <div class="padding-5 marg-top-5 marg-bottom-5 unread i-2">
+                            <div class="padding-5 marg-top-5 marg-bottom-5 unread dark i-2">
                             {% endif %}
                             {% if msg.isRead == true %}
                             <div class="padding-5 marg-top-5 marg-bottom-5 i-2">
@@ -71,7 +72,9 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="outbox colored">
+                <br />
+                <br />
+                <div class="outbox bright box-shadow">
                     <div>
                         <h2>Outbox</h2>
                     </div>
@@ -102,9 +105,12 @@
                         {% endif %}
                     {% endfor %}
                 </div>
+                <br />
+                <br />
             </div>
         </div>
-        <div class="send padding-20 box-shadow">
+        <div class="middle"></div>
+        <div class="send padding-20 box-shadow marg-top-percent colored">
             <form action="/send-msg/" method="post">
                 <div class="flexed padding-5 marg-bottom-10 just-cent">
                     <h2 class="padd-right">Send message to:</h2>
@@ -131,6 +137,7 @@
                 </div>
             </form>
         </div>
+        <div class="twenty"></div>
         <div id="test" class="popup" style="display:none;">
             This is a test message
             <div class="cancel" onclick="closePopup();"></div>
