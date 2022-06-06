@@ -29,7 +29,8 @@ def user_profile(id):
         now = int(now)
         bday = int(bday)
         age = math.floor(now - bday)
-        return render_template("profile.html", profile_user = profile_user, current_avatar = current_avatar, curr_profile = curr_profile, birth_date=birth_date, age=age, curr_user=curr_user, user_prof = user_prof, user_avi = user_avi, all_procomms = all_procomms)
+        all_coms = procomment.Procomment.get_procomm_userav(com_data)
+        return render_template("profile.html", profile_user = profile_user, current_avatar = current_avatar, curr_profile = curr_profile, birth_date=birth_date, age=age, curr_user=curr_user, user_prof = user_prof, user_avi = user_avi, all_procomms = all_procomms, all_coms = all_coms)
     return redirect("/")
 
 

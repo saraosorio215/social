@@ -9,19 +9,19 @@
 <body>
     <div class="header flexed al-cent box-shadow">
         <div class="h-1 single padd-left-5">
-            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
         </div>
         <div>
             <h1>Welcome, {{current_user.first_name}}!</h1>
         </div>
         <div class="h-2 single padd-left-5">
-            <a href="/inbox/" id="link">| Inbox |</a>
-            <a href="/logout/" id="link">Logout |</a>
+            <a href="/inbox/" id="link">| inbox |</a>
+            <a href="/logout/" id="link">logout |</a>
         </div>
     </div>
     <div class="page flexed light-grey">
         <div class="user-info box-shadow">
-            <div class="avatar">
+            <div class="avatar med-blue">
                 <img id="picture" src="{{current_avatar.file_path}}">
             </div>
             <div>
@@ -50,7 +50,7 @@
             <div class="bright padd-top-10 padd-bottom-10 box-shadow marg-top-10">
                 <div>
                     <h2 class="marg-bottom-5">Got something to say?</h2>
-                    <h2 class="marg-bottom-5">Post it here!</h2>
+                    <h2 class="marg-bottom-10">Post it here!</h2>
                 </div>
                 <div>
                     <form action="/new_post/" method="post">
@@ -67,13 +67,13 @@
             </div>
             <br />
             <br />
-            <div class="dark-blue box-shadow">
+            <div class="dark box-shadow">
                 <div class="padd-bottom padd-top">
                     <h2 class="marg-top-10">All Users</h2>
                 </div>
                 <div class="flexed padd-bottom-10">
                     {% for user in all_users %}
-                    <div class="profile-user margin marg-left-10 dark">
+                    <div class="profile-user margin marg-left-10">
                         <a href="/profile/{{user.id}}">
                             <img id="profile-pic" src="{{user.maker.file_path}}">
                         </a>
@@ -95,17 +95,38 @@
         <br>
         <div class="v-post marg-top-10">
             <div>
-                <h2 id="coolfeed" class="center">C<img src="{{url_for('static',filename='img/sunglasses1.jpg')}}" alt="logo">lFeed</h2>
+                <h2 id="coolfeed" class="center">C<img src="{{url_for('static',filename='img/sunglasses1.png')}}" alt="logo">lFeed</h2>
             </div>
             {% for post in all_posts %}
             <div class="actpost marg-top-10 box-shadow colored">
-                <div class="flexed">
-                    <div class="hidden"></div>
-                    <div class="padd-bottom centered">
-                        <h2 class="center">{{post.title}}</h2>
+                <div class="centered">
+                    <h2 class="center marg-bottom-5">{{post.title}}</h2>
+                </div>
+                <div class="marg-bottom-5 padding-5 padd-bottom-10 underlined">
+                    <p id="comm-text" class="padd-bottom">{{post.content}}</p>
+                </div>
+                <div class="flexed al-cent sp-btw">
+                    <div class="flexed al-cent padd-bottom just-left">
+                        <div>
+                            <img src="{{post.creator.file_path}}" id="icon-sm">
+                        </div>
+                        <div>
+                            <h3>{{post.maker.username}} |</h3>
+                        </div>
+                        <div>
+                            <h4 class="marg-left-10">{{post.maker.created_at}}</h4>
+                        </div>
+                        {% if session["user_id"] == post.user_id %}
+                        <div class="flexed al-cent just-cent edit-links">
+                            <h4>
+                                <a class="marg-left-5" href="/edit/post/{{post.id}}">( edit |</a>
+                                <a class="marg-left-5" href="/delete/post/{{post.id}}"><span id="red-dot">delete</span> )</a>
+                            </h4>
+                        </div>
+                        {% endif %}
                     </div>
                     {% if session["user_id"] == post.user_id %}
-                    <div class="flexed al-cent just-right watch-button">
+                    <div class="flexed al-cent just-right watch-button box-shadow">
                         <div>
                             <img src="{{url_for('static',filename='img/cool-icon.jpg')}}" alt="cool-icon" id="icon-tiny">
                         </div>
@@ -125,28 +146,12 @@
                     </div>
                     {% endif %}
                 </div>
-                <div class="flexed al-cent padd-bottom just-cent">
-                    <div>
-                        <h3>{{post.maker.username}}</h3>
-                    </div>
-                    <div>
-                        <h4 class="marg-left-10">{{post.maker.created_at}}</h4>
-                    </div>
-                </div>
-                {% if session["user_id"] == post.user_id %}
-                <div class="flexed al-cent just-cent edit-links">
-                    <a class="marg-left-5" href="/edit/post/{{post.id}}">| Edit |</a>
-                    <a class="marg-left-5" href="/delete/post/{{post.id}}"><span id="red-dot">Delete</span> |</a>
-                </div>
-                {% endif %}
-                <div class="marg-bottom-10 marg-top-10 padding underlined">
-                    <p id="comm-text" class="padd-bottom">{{post.content}}</p>
-                </div>
-                <h3 class="center">Comments</h3>
+                <br />
+                <h3 class="center marg-top-10">Comments</h3>
                 {% for comment in all_comments %}
                     {% if comment.post_id == post.id %}
                         <div class="actcomment">
-                            <div class="flexed sp-btw marg-bottom-5 comment-title-line padding-3">
+                            <div class="flexed sp-btw marg-bottom-5 padding-3 light-color">
                                 <p>{{comment.creator.username}}</p>
                                 <p>Posted on: {{comment.created_at}}</p>
                             </div>

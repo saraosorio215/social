@@ -60,6 +60,24 @@ class User():
         if result:
             return cls(result[0])
 
+    @classmethod
+    def get_one_with_av(cls, data):
+        query = "SELECT * FROM users LEFT JOIN avatars ON users.avatar_id = avatars.id WHERE users.id = %(id)s;"
+        result = connectToMySQL("contact").query_db(query, data)
+        avatars = []
+        if result:
+            temp_avatar = cls(result[0])
+            avatar_data = {
+                "id" : result[0]["avatars.id"],
+                "name" : result[0]["name"],
+                "file_path" : result[0]["file_path"],
+                "created_at" : result[0]["avatars.created_at"],
+                "updated_at" : result[0]["avatars.updated_at"]
+            }
+            temp_avatar.maker = avatar.Avatar(avatar_data)
+            avatars.append(temp_avatar)
+        return avatars
+
 
     @classmethod
     def get_all(cls):

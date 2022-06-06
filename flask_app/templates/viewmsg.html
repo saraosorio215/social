@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>View Message</title>
+</head>
+<body>
+    <div class="header flexed al-cent box-shadow">
+        <div class="h-1 single padd-left-5">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-2 single padd-left-5">
+            <a href="/inbox/" id="link">| inbox |</a>
+            <a href="/dashboard/" id="link">dashboard |</a>
+            <a href="/logout/" id="link">logout |</a>
+        </div>
+    </div>
+    <div class="page flexed light-grey">
+        <div class="user-info box-shadow">
+            <div class="avatar">
+                <img id="picture" src="{{current_user[0].maker.file_path}}">
+            </div>
+            <div>
+                <h3>{{current_user[0].username}}</h3>
+            </div>
+            <div>
+                <h3>{{current_user[0].first_name + " " + current_user[0].last_name}}</h3>
+            </div>
+            <br />
+        </div>
+        <div class="hundred-w">
+            <br />
+            <div class="colored padding-5 padd-left-10 box-shadow center flexed al-cent just-cent marg-bottom-10">
+                <div>
+                    <h1>msgs with {{msg_sender[0].username}}</h1>
+                    <p>status: {% if msg_sender[0].online == 1 %}
+                        <span id="green-dot">ONLINE</span>
+                    {% endif %}
+                    {% if msg_sender[0].online ==  0%}
+                        <span id="red-dot">OFFLINE</span>
+                    {% endif %}</p>
+                </div>
+                <div class="marg-left-5">
+                    <img id="msg-pic" src="{{msg_sender[0].maker.file_path}}">
+                </div>
+            </div>
+            <br />
+            <div class="flexed just-cent centered marg-top-20">
+                <div class="dark-blue padding box-shadow min-width overflow max-height marg-right-20 padd-bottom-20">
+                    <h2 class="marg-bottom-10 center">received</h2>
+                    <hr />
+                    {% for one_msg in rev_all_msgs %}
+                    <div class="padding-5">
+                        <div class="flexed sp-btw">
+                            <div>
+                                <p>subject: {{one_msg.subject}}</p>
+                            </div>
+                            <div>
+                                <p>{{one_msg.created_at}}</p>
+                            </div>
+                        </div>
+                        <p class="padd-left-5 marg-bottom-5">{{one_msg.msg_text}}</p>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                <div class="dark padding box-shadow min-width overflow marg-left-20 max-height">
+                    <h2 class="marg-bottom-10 center">sent</h2>
+                    <hr />
+                    {% for msg in all_msgs %}
+                    <div class="padding-5">
+                        <div class="flexed sp-btw">
+                            <div>
+                                <p>subject: {{msg.subject}}</p>
+                            </div>
+                            <div>
+                                <p>{{msg.created_at}}</p>
+                            </div>
+                        </div>
+                        <p class="padd-left-5">{{msg.msg_text}}</ht>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="flexed just-cent">
+                <div class="bright padding-20 box-shadow min-width-msg min-height-msg marg-right-20">
+                    <h2 class="center marg-bottom-5">current msg</h2>
+                    <h3 class="marg-bottom-5">subject: {{current_msg.subject}}</h3>
+                    <p class="padd-left-5">{{current_msg.msg_text}}</p>
+                </div>
+                <div class="med-blue padding box-shadow padd-right-30 marg-left-20 marg-right-20">
+                    <h2 class="padding-5 center">reply to {{msg_sender[0].first_name}}</h2>
+                    <form action="/send-msg/" method="post">
+                        <input type="hidden" name="recipient_id" value="{{msg_sender[0].id}}">
+                        <div class="flexed al-cent padding-5 marg-bottom-10">
+                            <label><h3>Subject:</h3></label>
+                            <input type="text" name="subject" id="reply-sub">
+                        </div>
+                        <div class="flexed padding-5">
+                            <label><h3>Message:</h3></label>
+                            <textarea name="msg_text" cols="30" rows="4" wrap="hard" id="reply-msg"></textarea>
+                        </div>
+                        <div class="padding-5 center marg-top-5">
+                            <button class="posted-comm center" type="submit">send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+</body>
+</html>

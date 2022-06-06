@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
-from flask_app.models import user, like
+from flask_app.models import user, like, avatar
 
 class Post():
     def __init__(self, data):
@@ -16,7 +16,7 @@ class Post():
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM posts JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC;"
+        query = "SELECT * FROM posts JOIN users ON posts.user_id = users.id JOIN avatars ON users.avatar_id = avatars.id ORDER BY posts.created_at DESC;"
         results = connectToMySQL("contact").query_db(query)
         posts = []
         if results:
@@ -35,7 +35,15 @@ class Post():
                     "updated_at" : row["users.updated_at"],
                     "like_count" : row["like_count"]
                 }
+                avatar_data = {
+                    "id": row["avatars.id"],
+                    "name" : row["name"],
+                    "file_path" : row["file_path"],
+                    "created_at" : row["avatars.created_at"],
+                    "updated_at" : row["avatars.updated_at"]
+                }
                 temp_post.maker = user.User(user_data)
+                temp_post.creator = avatar.Avatar(avatar_data)
                 posts.append(temp_post)
         return posts
 

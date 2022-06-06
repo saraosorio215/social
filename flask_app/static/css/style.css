@@ -6,7 +6,7 @@
 
 /**************BACKGROUND COLORS*************************/
 
-.whole, .like-button, .comment-title-line, .pro-comm {
+.whole, .like-button, .pro-comm {
     background-color: #B0BFBB;
 }
 
@@ -24,6 +24,10 @@
 
 .header, .user-info, .light-blue {
     background-color: #B1CAD3;
+}
+
+.med-blue {
+    background-color: #98adb5;
 }
 
 .popup, .light-color {
@@ -63,12 +67,20 @@ textarea { resize: none; }
     height: 100%;
 }
 
+.hundred-w {
+    width: 100%;
+}
+
 .eighty {
     height: 80%;
 }
 
 .fit-cont {
     width: fit-content;
+}
+
+.fit-cont-h {
+    height: fit-content;
 }
 
 .padding {
@@ -135,6 +147,10 @@ textarea { resize: none; }
     padding-right: 5px;
 }
 
+.padd-right-10 {
+    padding-right: 10px;
+}
+
 .padd-right-30 {
     padding-right: 30px;
 }
@@ -153,6 +169,10 @@ textarea { resize: none; }
 
 .marg-left-20 {
     margin-left: 20px;
+}
+
+.marg-left-percent {
+    margin-left: 20%;
 }
 
 .marg-right-5 {
@@ -243,9 +263,13 @@ textarea { resize: none; }
     letter-spacing: 3px;
 }
 
+.overflow {
+    overflow-y: auto;
+}
+
 /**------------------------------BORDERS-------------------------------------*/
 
-.login, .avatar, .watch-button, .profile-user, .o-2 {
+.login, .avatar, .watch-button, .profile-user, .o-2, .actcomment {
     border: 2px solid #CDDDDD;
 }
 
@@ -263,10 +287,6 @@ textarea { resize: none; }
 
 .top-border {
     border-top: 2px solid #909c8e;
-}
-
-.actcomment {
-    border: 2px solid #B0BFBB;
 }
 
 .pro-comm {
@@ -437,10 +457,9 @@ textarea { resize: none; }
     box-shadow: 2px 2px grey;
 }
 
-.posted, .posted-comm {
+.posted, .posted-comm, .msg-btn, .send-btn {
     border-color: #ffffff;
     cursor: pointer;
-    padding: 0.3em 0.5em;
     font-size: 1em;
     color: black;
     background-position: 25%;
@@ -449,15 +468,27 @@ textarea { resize: none; }
     transition: background 500ms ease-in-out, color 500ms ease-in-out;
 }
 
+.send-btn {
+    padding: 0.3em 1em;
+}
+
+.msg-btn {
+    padding: 0 0.6em 0.3em 0.6em;
+}
+
+.posted, .posted-comm {
+    padding: 0.3em 0.5em;
+}
+
 .posted-comm {
     background-image: linear-gradient(45deg, transparent 50%, #B1CAD3 50%);
 }
 
-.posted {
+.posted, .send-btn {
     background-image: linear-gradient(45deg, transparent 50%, #cddbb9 50%);
 }
 
-.posted:hover, .posted-comm:hover {
+.posted:hover, .posted-comm:hover, .send-btn:hover {
     color: #ffffff;
     background-position: 100%;
 }
@@ -485,7 +516,7 @@ textarea { resize: none; }
 }
 
 #comm-text {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #profile-pic {
@@ -504,7 +535,7 @@ textarea { resize: none; }
 }
 
 #red-dot {
-    color: rgb(222, 14, 14);
+    color: rgb(176, 13, 13);
 }
 
 #icon-tiny {
@@ -538,17 +569,17 @@ textarea { resize: none; }
     overflow-y: scroll;
 }
 
-#subject, #message, #select {
+#subject, #message, #select, #reply-sub, #reply-msg {
     border: 1px #cacdcf solid;
     margin-left: 3px;
 }
 
-#subject, #message, #select, #title, #content, #comment_text {
+#subject, #message, #select, #title, #content, #comment_text, #reply-sub, #reply-msg {
     background-color: #dee2e6;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-#subject, #message {
+#subject, #message, #reply-sub, #reply-msg {
     width: 30vw;
 }
 
@@ -556,7 +587,11 @@ textarea { resize: none; }
     height: 15vw;
 }
 
-#subject {
+#reply-msg {
+    height: 12vw;
+}
+
+#subject, #reply-sub {
     height: 25px;
 }
 
@@ -590,41 +625,25 @@ textarea { resize: none; }
     background-color: #CDDDDD;
 }
 
-.popup {
-    position:fixed;
-    top:0px;
-    left:0px;
-    bottom:0px;
-    right:0px;  
-    margin:auto;
-    width:500px;
-    height:500px;
-    font-family:verdana;
-    font-size:13px;
-    padding:10px;
-    border:2px solid grey;
-    z-index:100000000000000000;
+.min-width {
+    min-width: 35%;
 }
 
-.cancel {
-    display:relative;
-    cursor:pointer;
-    margin:0;
-    float:right;
-    height:10px;
-    width:14px;
-    padding:0 0 5px 0;
-    background-color: white;
-    text-align:center;
-    font-weight:bold;
-    font-size:11px;
-    color:white;
-    border-radius:3px;
-    z-index:100000000000000000;
+.min-width-msg {
+    min-width: 30%;
 }
 
-.cancel:hover {
-    background:black;
+.min-height-msg {
+    min-height: 40%;
+}
+
+.max-height {
+    max-height: 40%;
+}
+
+#msg-pic {
+    height: 50px;
+    width: auto;
 }
 
 /**-------------------------------EDIT POST-------------------------------------*/
@@ -659,6 +678,11 @@ textarea { resize: none; }
     width: auto;
 }
 
+#icon-med {
+    height: 30px;
+    width: auto;
+}
+
 .prof-form {
     padding-left: 35%;
 }
@@ -686,4 +710,7 @@ textarea { resize: none; }
 
 .max-width {
     width: 45%;
+}
+.max-fit{
+    max-height: 80%;
 }

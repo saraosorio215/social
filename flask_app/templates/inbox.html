@@ -10,11 +10,11 @@
 <body>
     <div class="header flexed al-cent box-shadow">
         <div class="h-1 single padd-left-5">
-            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
         </div>
         <div class="h-2 single padd-left-5">
-            <a href="/dashboard/" id="link">| Dashboard |</a>
-            <a href="/logout/" id="link">Logout |</a>
+            <a href="/dashboard/" id="link">| dashboard |</a>
+            <a href="/logout/" id="link">logout |</a>
         </div>
     </div>
     <div class="page flexed light-grey">
@@ -29,25 +29,13 @@
                 <h3>{{person.first_name + " " + person.last_name}}</h3>
             </div>
             <br />
-            {% if current_prof.birthday == null %}
-            <div>
-                <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
-            </div>
-            {% endif %}
-            {% if current_prof.birthday != null %}
-            <div>
-                <a href="/profile/{{person.id}}">View Profile</a>
-                <br />
-                <a href="+">Edit Profile</a>
-            </div>
-            {% endif %}
         </div>
         <div class="twenty"></div>
         <div class="flexed">
             <div class="marg-top-20">
                 <div class="inbox light-color box-shadow padd-top-10">
                     <div>
-                        <h2>Inbox</h2>
+                        <h2 class="center">inbox</h2>
                     </div>
                     {% for msg in msgs %}
                         {% if msg.recipient_id == session["user_id"] %}
@@ -57,50 +45,54 @@
                             {% if msg.isRead == true %}
                             <div class="padding-5 marg-top-5 marg-bottom-5 i-2">
                             {% endif %}
-                            <div class="flexed sp-btw">
-                                <h3>From: {{msg.maker.first_name + " " + msg.maker.last_name}}</h3>
-                                {% if msg.isRead == false %}
-                                    <h4><button onClick="openPopup();"">Read</button></h4>
-                                {% endif %}
-                                {% if msg.isRead == true %}
-                                    <h4><a href="+">Open</a></h4>
-                                {% endif %}
+                            <div class="flexed sp-btw al-cent">
+                                <div class="flexed just-left al-cent">
+                                    <img src="{{msg.creator.file_path}}" id="icon-sm">
+                                    <h3 class="marg-left-5">{{msg.maker.first_name + " " + msg.maker.last_name}}</h3>
+                                </div>
+                                <div>
+                                    {% if msg.isRead == false %}
+                                    <h4><a href="/readmsg/{{msg.id}}"><button class="msg-btn">read</button></a></h4>
+                                    {% endif %}
+                                    {% if msg.isRead == true %}
+                                    <h4><a href="/viewmsg/{{msg.id}}"><button class="msg-btn">open</button></a></h4>
+                                    {% endif %}
+                                </div>
                             </div>
-                                <h4>Subject: {{msg.subject}}</h4>
-                                <h4>Received at: {{msg.created_at}}</h4>
+                                <h4>subject: {{msg.subject}}</h4>
+                                <h4>received at: {{msg.created_at}}</h4>
                             </div>
                         {% endif %}
                     {% endfor %}
                 </div>
                 <br />
                 <br />
-                <div class="outbox bright box-shadow">
+                <div class="outbox colored box-shadow">
                     <div>
-                        <h2>Outbox</h2>
+                        <h2 class="center">outbox</h2>
                     </div>
                     {% for delivery in deliveries %}
                         {% if delivery.user_id == session["user_id"] %}
                         <div class="o-2 padding-5 marg-top-5 marg-bottom-5">
-                            <div class="flexed sp-btw">
-                                <h3>Sent to: {{delivery.maker.first_name + " " + delivery.maker.last_name}}</h3>
-                                {% if delivery.isRead == 0 %}
-                                    <a href="/unsend-msg/{{delivery.id}}">Unsend</a>
-                                {% endif %}
-                            </div>
-                            <div class="flexed sp-btw">
-                                <div>
-                                    <h4>Subject: {{delivery.subject}}</h4>
+                            <div class="flexed sp-btw al-cent">
+                                <div class="flexed just-left al-cent">
+                                    <img src="{{delivery.creator.file_path}}" id="icon-sm">
+                                    <h3 class="marg-left-5">{{delivery.maker.first_name + " " + delivery.maker.last_name}}</h3>
                                 </div>
-                                <div>
-                                {% if delivery.isRead == 0 %}
-                                    <p id="red-dot">UNOPENED</p>
-                                {% endif %}
-                                {% if delivery.isRead == 1 %}
-                                    <p id="green-dot">OPENED</p>
-                                {% endif %}
+                                <div class="flexed just-right al-cent">
+                                    {% if delivery.isRead == 0 %}
+                                    (<p id="red-dot">UNOPENED</p>)
+                                    <a href="/unsend-msg/{{delivery.id}}"><button class="msg-btn marg-left-5">unsend</button></a>
+                                    {% endif %}
+                                    {% if delivery.isRead == 1 %}
+                                    (<p id="green-dot">OPENED</p>)
+                                    {% endif %}
                                 </div>
                             </div>
-                            <h4>Sent at: {{delivery.created_at}}</h4>
+                            <div>
+                                <h4>subject: {{delivery.subject}}</h4>
+                            </div>
+                            <h4>sent at: {{delivery.created_at}}</h4>
                         </div>
                         {% endif %}
                     {% endfor %}
@@ -110,10 +102,10 @@
             </div>
         </div>
         <div class="middle"></div>
-        <div class="send padding-20 box-shadow marg-top-percent colored">
+        <div class="send padding-20 box-shadow marg-top-percent bright">
             <form action="/send-msg/" method="post">
                 <div class="flexed padding-5 marg-bottom-10 just-cent">
-                    <h2 class="padd-right">Send message to:</h2>
+                    <h2 class="padd-right">send message to:</h2>
                     <select name="recipient_id" id="select">
                         {% for choice in choices %}
                             {% if choice.id != session["user_id"] %}
@@ -125,36 +117,20 @@
                     </select>
                 </div>
                 <div class="flexed padding-5 marg-bottom-10 al-cent">
-                    <label><h3>Subject:</h3></label>
+                    <label><h3>subject:</h3></label>
                     <input type="text" name="subject" id="subject">
                 </div>
                 <div class="flexed padding-5">
-                    <label><h3>Message:</h3></label>
+                    <label><h3>message:</h3></label>
                     <textarea name="msg_text" cols="30" rows="4" id="message" wrap="hard"></textarea>
                 </div>
                 <div class="padding-5 center marg-top-5">
-                    <button class="posted center" type="submit">Send</button>
+                    <button class="send-btn center" type="submit">Send</button>
                 </div>
             </form>
         </div>
         <div class="twenty"></div>
-        <div id="test" class="popup" style="display:none;">
-            This is a test message
-            <div class="cancel" onclick="closePopup();"></div>
-        </div>
     </div>
-
-    <script>
-        function openPopup() {
-        document.getElementById('test').style.display = 'block';
-        $('#test').fadeIn(1000);
-        }
-
-        function closePopup() {
-        document.getElementById('test').style.display = 'none';
-        $('#test').fadeOut(500);
-        }
-    </script>
 
 </body>
 </html>

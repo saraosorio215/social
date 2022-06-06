@@ -29,6 +29,46 @@ def delete(id):
     return redirect("/inbox/")
 
 
+@app.route("/readmsg/<int:id>")
+def read_msg(id):
+    data = {"id" : id}
+    current_msg = message.Message.one_msg(data)
+    message.Message.mark_read(data)
+    user_data = {"id" : session['user_id']}
+    current_user = user.User.get_one_with_av(user_data)
+    sender_id = {"id": current_msg.user_id}
+    msg_sender = user.User.get_one_with_av(sender_id)
+    msg_data = {
+        "user_id": session["user_id"],
+        "recipient_id": current_msg.user_id
+    }
+    rev_msg_data = {
+        "user_id": current_msg.user_id,
+        "recipient_id": session["user_id"]
+    }
+    all_msgs = message.Message.all_msgs(msg_data)
+    rev_all_msgs = message.Message.all_msgs(rev_msg_data)
+    return render_template("viewmsg.html", current_user = current_user, current_msg = current_msg, msg_sender = msg_sender, all_msgs = all_msgs, rev_all_msgs = rev_all_msgs)
+
+@app.route("/viewmsg/<int:id>")
+def view_msg(id):
+    data = {"id" : id}
+    current_msg = message.Message.one_msg(data)
+    user_data = {"id" : session['user_id']}
+    current_user = user.User.get_one_with_av(user_data)
+    sender_id = {"id": current_msg.user_id}
+    msg_sender = user.User.get_one_with_av(sender_id)
+    msg_data = {
+        "user_id": session["user_id"],
+        "recipient_id": current_msg.user_id
+    }
+    rev_msg_data = {
+        "user_id": current_msg.user_id,
+        "recipient_id": session["user_id"]
+    }
+    all_msgs = message.Message.all_msgs(msg_data)
+    rev_all_msgs = message.Message.all_msgs(rev_msg_data)
+    return render_template("viewmsg.html", current_user = current_user, current_msg = current_msg, msg_sender = msg_sender, all_msgs = all_msgs, rev_all_msgs = rev_all_msgs)
 
 
 #*----------------------------------ACTION ROUTES-------------------------------------
