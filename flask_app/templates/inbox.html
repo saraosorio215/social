@@ -19,16 +19,30 @@
     </div>
     <div class="page flexed light-grey">
         <div class="user-info box-shadow">
-            <div class="avatar">
-                <img id="picture" src="{{current_avatar.file_path}}">
+            <div class="avatar med-blue">
+                <img id="picture" src="{{curr_user[0].maker.file_path}}">
             </div>
             <div>
-                <h3>{{person.username}}</h3>
+                <h3>{{curr_user[0].creator.username}}</h3>
             </div>
             <div>
-                <h3>{{person.first_name + " " + person.last_name}}</h3>
+                <h3>{{curr_user[0].creator.first_name + " " + curr_user[0].creator.last_name}}</h3>
             </div>
             <br />
+            <div>
+                {% if curr_user.birthday == null %}
+                <div>
+                    <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
+                </div>
+                {% endif %}
+                {% if curr_user.birthday != null %}
+                <div>
+                    <a href="/profile/{{current_user.id}}">View Profile</a>
+                    <br />
+                    <a href="/edit/profile/">Edit Profile</a>
+                </div>
+                {% endif %}
+            </div>
         </div>
         <div class="twenty"></div>
         <div class="flexed">
@@ -105,7 +119,7 @@
         <div class="send padding-20 box-shadow marg-top-percent bright">
             <form action="/send-msg/" method="post">
                 <div class="flexed padding-5 marg-bottom-10 just-cent">
-                    <h2 class="padd-right">send message to:</h2>
+                    <h2 class="padd-right">send msg to:</h2>
                     <select name="recipient_id" id="select">
                         {% for choice in choices %}
                             {% if choice.id != session["user_id"] %}

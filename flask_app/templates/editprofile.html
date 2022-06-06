@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <div class="header flexed al-cent box-shadow">
+        <div class="h-1 single padd-left-5">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
+        </div>
+        <div class="h-2 single padd-left-5">
+            <a href="/dashboard/" id="link">| dashboard |</a>
+            <a href="/inbox/" id="link">inbox |</a>
+            <a href="/logout/" id="link">logout |</a>
+        </div>
+    </div>
+    <div class="page flexed colored">
+        <div class="user-info box-shadow">
+            <div class="avatar med-blue">
+                <img id="picture" src="{{curr_prof[0].maker.file_path}}">
+            </div>
+            <div>
+                <h3>{{curr_prof[0].creator.username}}</h3>
+            </div>
+            <div>
+                <h3>{{curr_prof[0].creator.first_name + " " + curr_prof[0].creator.last_name}}</h3>
+            </div>
+        </div>
+        <div class="edit">
+            <form action="/update/profile/{{curr_prof[0].id}}" method="post">
+                <div>
+                    <label>Birthday: </label>
+                    <input type="date" name="birthday" value="{{curr_prof[0].birthday}}" id="title">
+                </div>
+                <div>
+                    <label>Hometown: </label>
+                    <input type="text" name="hometown" value="{{curr_prof[0].hometown}}" id="title">
+                </div>
+                <div>
+                    <label>Location: </label>
+                    <input type="text" name="location" value="{{curr_prof[0].location}}" id="title">
+                </div>
+                <div>
+                    <label>Favorite Show: </label>
+                    <input type="text" name="fav_show" value="{{curr_prof[0].fav_show}}" id="title">
+                </div>
+                <div>
+                    <label>Favorite Movie: </label>
+                    <input type="text" name="fav_movie" value="{{curr_prof[0].fav_movie}}" id="title">
+                </div>
+                <div>
+                    <label>Favorite Quote: </label>
+                    <input type="text" name="fav_quote" value="{{curr_prof[0].fav_quote}}" id="title">
+                </div>
+                <div>
+                    <label>About Me: </label>
+                    <input type ="text" name="about_me" cols="30" rows="4" value="{{curr_prof[0].about_me}}" id="content" wrap="hard">
+                </div>
+                <br />
+                <div class="center">
+                    <a href="/dashboard/">Go Back</a>
+                    <input type="submit" value="Update Profile" class="posted">
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

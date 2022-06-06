@@ -10,27 +10,15 @@ import math
 def user_profile(id):
     if "user_id" in session:
         user_data = {"id": session["user_id"]}
-        curr_user = user.User.get_by_id(user_data)
-        user_prof = profile.Profile.get_by_id(user_data)
-        av_id = {"id": curr_user.avatar_id}
-        user_avi = avatar.Avatar.getav_by_id(av_id)
+        curr_user = profile.Profile.get_prof_userav(user_data)
         data = {"id": id}
-        profile_user = user.User.get_by_id(data)
-        curr_id = {"id": profile_user.avatar_id}
-        current_avatar = avatar.Avatar.getav_by_id(curr_id)
-        curr_profile = profile.Profile.get_by_id(data)
-        com_data = {"id" : curr_profile.id}
-        print(com_data)
-        all_procomms = procomment.Procomment.get_all_procomms(com_data)
-        birthday = curr_profile.birthday
+        curr_prof = profile.Profile.get_prof_userav(data)
+        com_data = {"id" : curr_prof[0].id}
+        birthday = curr_prof[0].birthday
         birth_date = birthday.strftime("%m/%d")
-        bday = birthday.strftime("%Y")
-        now = date.today().strftime("%Y")
-        now = int(now)
-        bday = int(bday)
-        age = math.floor(now - bday)
+        age = int(date.today().strftime("%Y")) - int(birthday.strftime("%Y"))
         all_coms = procomment.Procomment.get_procomm_userav(com_data)
-        return render_template("profile.html", profile_user = profile_user, current_avatar = current_avatar, curr_profile = curr_profile, birth_date=birth_date, age=age, curr_user=curr_user, user_prof = user_prof, user_avi = user_avi, all_procomms = all_procomms, all_coms = all_coms)
+        return render_template("profile.html", curr_prof = curr_prof, birth_date=birth_date, age=age, curr_user=curr_user, all_coms = all_coms)
     return redirect("/")
 
 
@@ -41,6 +29,13 @@ def prof_setup():
         curr_user = user.User.get_by_id(data)
         return render_template("profilesetup.html", curr_user = curr_user)
     return redirect("/")
+
+
+@app.route("/edit/profile/")
+def edit_prof():
+    data = {"id": session["user_id"]}
+    curr_prof = profile.Profile.get_prof_userav(data)
+    return render_template("editprofile.html", curr_prof = curr_prof)
 
 
 #*---------------------------------ACTION ROUTES-------------------------------------
@@ -59,4 +54,19 @@ def create_prof(id):
         "user_id" : profuser_id
     }
     profile.Profile.create_prof(data)
+    return redirect("/dashboard/")
+
+@app.route("/update/profile/<int:id>", methods=['POST'])
+def update_prof(id):
+    data = {
+        "birthday" : request.form["birthday"],
+        "hometown" : request.form["hometown"],
+        "location" : request.form["location"],
+        "fav_show" : request.form["fav_show"],
+        "fav_movie" : request.form["fav_movie"],
+        "fav_quote" : request.form["fav_quote"],
+        "about_me" : request.form["about_me"],
+        "id" : id
+    }
+    profile.Profile.upd_prof(data)
     return redirect("/dashboard/")

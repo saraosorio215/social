@@ -12,7 +12,7 @@
             <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
         </div>
         <div>
-            <h1>Welcome, {{current_user.first_name}}!</h1>
+            <h1>Welcome, {{curr_user[0].creator.first_name}}!</h1>
         </div>
         <div class="h-2 single padd-left-5">
             <a href="/inbox/" id="link">| inbox |</a>
@@ -22,26 +22,26 @@
     <div class="page flexed light-grey">
         <div class="user-info box-shadow">
             <div class="avatar med-blue">
-                <img id="picture" src="{{current_avatar.file_path}}">
+                <img id="picture" src="{{curr_user[0].maker.file_path}}">
             </div>
             <div>
-                <h3>{{current_user.username}}</h3>
+                <h3>{{curr_user[0].creator.username}}</h3>
             </div>
             <div>
-                <h3>{{current_user.first_name + " " + current_user.last_name}}</h3>
+                <h3>{{curr_user[0].creator.first_name + " " + curr_user[0].creator.last_name}}</h3>
             </div>
             <br />
             <div>
-                {% if current_prof.birthday == null %}
+                {% if curr_user[0].birthday == null %}
                 <div>
                     <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
                 </div>
                 {% endif %}
-                {% if current_prof.birthday != null %}
+                {% if curr_user[0].birthday != null %}
                 <div>
-                    <a href="/profile/{{current_user.id}}">View Profile</a>
+                    <a href="/profile/{{curr_user[0].creator.id}}">View Profile</a>
                     <br />
-                    <a href="+">Edit Profile</a>
+                    <a href="/edit/profile/">Edit Profile</a>
                 </div>
                 {% endif %}
             </div>

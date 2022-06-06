@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
+from flask_app.models import avatar, user
 
 class Profile():
     def __init__(self, data):
@@ -22,6 +23,37 @@ class Profile():
         result = connectToMySQL("contact").query_db(query, data)
         if result:
             return cls(result[0])
+
+    @classmethod
+    def get_prof_userav(cls, data):
+        query = "SELECT * FROM profiles JOIN users ON profiles.user_id = users.id JOIN avatars ON users.avatar_id = avatars.id WHERE profiles.user_id = %(id)s;"
+        result = connectToMySQL("contact").query_db(query, data)
+        alldata = []
+        if result:
+            temp_avatar = cls(result[0])
+            avatar_data = {
+                "id" : result[0]["avatars.id"],
+                "name" : result[0]["name"],
+                "file_path" : result[0]["file_path"],
+                "created_at" : result[0]["avatars.created_at"],
+                "updated_at" : result[0]["avatars.updated_at"]
+            }
+            user_data = {
+                "id": result[0]["users.id"],
+                "first_name": result[0]["first_name"],
+                "last_name": result[0]["last_name"],
+                "username": result[0]["username"],
+                "email": result[0]["email"],
+                "password": result[0]["password"],
+                "avatar_id": result[0]["avatar_id"],
+                "online": result[0]["online"],
+                "created_at": result[0]["users.created_at"],
+                "updated_at": result[0]["users.updated_at"]
+            }
+            temp_avatar.maker = avatar.Avatar(avatar_data)
+            temp_avatar.creator = user.User(user_data)
+            alldata.append(temp_avatar)
+        return alldata
 
     @classmethod
     def upd_prof(cls, data):

@@ -20,7 +20,7 @@
     </div>
     <div class="page flexed light-grey">
         <div class="user-info box-shadow">
-            <div class="avatar">
+            <div class="avatar med-blue">
                 <img id="picture" src="{{current_user[0].maker.file_path}}">
             </div>
             <div>
@@ -92,7 +92,7 @@
                 <div class="bright padding-20 box-shadow min-width-msg min-height-msg marg-right-20">
                     <h2 class="center marg-bottom-5">current msg</h2>
                     <h3 class="marg-bottom-5">subject: {{current_msg.subject}}</h3>
-                    <p class="padd-left-5">{{current_msg.msg_text}}</p>
+                    <p class="padd-left-5" id="comm-text">{{current_msg.msg_text}}</p>
                 </div>
                 <div class="med-blue padding box-shadow padd-right-30 marg-left-20 marg-right-20">
                     <h2 class="padding-5 center">reply to {{msg_sender[0].first_name}}</h2>

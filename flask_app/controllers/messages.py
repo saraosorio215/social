@@ -12,14 +12,13 @@ from flask_app.config.mysqlconnection import connectToMySQL
 def send():
     if "user_id" in session:
         user_data = {"id" : session['user_id']}
+        curr_user = profile.Profile.get_prof_userav(user_data)
         person = user.User.get_by_id(user_data)
         choices = user.User.get_all()
         msgs = message.Message.get_all_inbox()
         deliveries = message.Message.get_all_outbox()
-        avatar_data = {"id" : person.avatar_id}
-        current_avatar = avatar.Avatar.getav_by_id(avatar_data)
-        current_prof = profile.Profile.get_by_id(user_data)
-        return render_template("inbox.html", person=person, choices=choices, msgs=msgs, deliveries = deliveries, current_avatar = current_avatar, current_prof = current_prof)
+        return render_template("inbox.html", person=person, choices=choices, msgs=msgs, deliveries = deliveries, curr_user = curr_user)
+    return redirect("/")
 
 
 @app.route("/unsend-msg/<int:id>")
@@ -49,6 +48,7 @@ def read_msg(id):
     all_msgs = message.Message.all_msgs(msg_data)
     rev_all_msgs = message.Message.all_msgs(rev_msg_data)
     return render_template("viewmsg.html", current_user = current_user, current_msg = current_msg, msg_sender = msg_sender, all_msgs = all_msgs, rev_all_msgs = rev_all_msgs)
+
 
 @app.route("/viewmsg/<int:id>")
 def view_msg(id):

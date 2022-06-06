@@ -21,27 +21,27 @@
     <div class="light-grey page">
         <div class="flexed sp-btw">
             <div class="user-info box-shadow">
-                <div class="avatar">
-                    <img id="picture" src="{{user_avi.file_path}}">
+                <div class="avatar med-blue">
+                    <img id="picture" src="{{curr_user[0].maker.file_path}}">
                 </div>
                 <div>
-                    <h3>{{curr_user.username}}</h3>
+                    <h3>{{curr_user[0].creator.username}}</h3>
                 </div>
                 <div>
-                    <h3>{{curr_user.first_name + " " + curr_user.last_name}}</h3>
+                    <h3>{{curr_user[0].creator.first_name + " " + curr_user[0].creator.last_name}}</h3>
                 </div>
                 <br />
                 <div>
-                    {% if user_prof.birthday == null %}
+                    {% if curr_user[0].birthday == null %}
                     <div>
                         <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
                     </div>
                     {% endif %}
-                    {% if user_prof.birthday != null %}
+                    {% if curr_user[0].birthday != null %}
                     <div>
-                        <a href="/profile/{{curr_user.id}}">View Profile</a>
+                        <a href="/profile/{{curr_user[0].creator.id}}">View Profile</a>
                         <br />
-                        <a href="+">Edit Profile</a>
+                        <a href="/edit/profile/">Edit Profile</a>
                     </div>
                     {% endif %}
                 </div>
@@ -51,12 +51,12 @@
                 <div class="flexed just-cent">
                     <div class="flexed padding-20 dark box-shadow marg-top-20 marg-right-20">
                         <div class="marg-right-10">
-                            <img id="pro-pic" src="{{current_avatar.file_path}}" alt="avatar">
+                            <img id="pro-pic" src="{{curr_prof[0].maker.file_path}}" alt="avatar">
                         </div>
                         <div class="marg-left-20">
-                            <h1>{{profile_user.username}}</h1>
+                            <h1>{{curr_prof[0].creator.username}}</h1>
                             <br />
-                            <h3 class="padd-bottom" id="prof-name">{{profile_user.first_name}}</h3>
+                            <h3 class="padd-bottom" id="prof-name">{{curr_prof[0].creator.first_name}}</h3>
                             <div class="flexed al-cent padd-bottom">
                                 <div>
                                     <img src="{{url_for('static',filename='img/age-icon.png')}}" alt="hometown" id="icon-sm">
@@ -78,7 +78,7 @@
                                     <img src="{{url_for('static',filename='img/home-icon.png')}}" alt="hometown" id="icon-sm">
                                 </div>
                                 <div class="marg-left-5">
-                                    <h3 id="prof-details">{{curr_profile.hometown}}</h3>
+                                    <h3 id="prof-details">{{curr_prof[0].hometown}}</h3>
                                 </div>
                             </div>
                             <div class="flexed al-cent padd-bottom">
@@ -86,7 +86,7 @@
                                     <img src="{{url_for('static',filename='img/pin-icon.png')}}" alt="location" id="icon-sm">
                                 </div>
                                 <div class="marg-left-5">
-                                    <h3 id="prof-details" class="marg-left-5">{{curr_profile.location}}</h3>
+                                    <h3 id="prof-details" class="marg-left-5">{{curr_prof[0].location}}</h3>
                                 </div>
                             </div>
                             <div class="flexed al-cent padd-bottom">
@@ -94,7 +94,7 @@
                                     <img src="{{url_for('static',filename='img/tv-icon.png')}}" alt="tv-show" id="icon-sm">
                                 </div>
                                 <div class="marg-left-5">
-                                    <h3 id="prof-details">{{curr_profile.fav_show}}</h3>
+                                    <h3 id="prof-details">{{curr_prof[0].fav_show}}</h3>
                                 </div>
                             </div>
                             <div class="flexed al-cent padd-bottom">
@@ -102,7 +102,7 @@
                                     <img src="{{url_for('static',filename='img/film-icon.png')}}" alt="movie" id="icon-sm">
                                 </div>
                                 <div class="marg-left-5">
-                                    <h3 id="prof-details">{{curr_profile.fav_movie}}</h3>
+                                    <h3 id="prof-details">{{curr_prof[0].fav_movie}}</h3>
                                 </div>
                             </div>
                             <div class="flexed al-cent padd-bottom">
@@ -111,10 +111,10 @@
                                 </div>
                                 <div class="marg-left-5">
                                     <h3>
-                                    {% if profile_user.online == 1 %}
+                                    {% if curr_prof[0].creator.online == 1 %}
                                     <h3><span id="green-dot">ONLINE</span></h3>
                                     {% endif %}
-                                    {% if profile_user.online ==  0%}
+                                    {% if curr_prof[0].creator.online ==  0%}
                                     <h3><span id="red-dot">OFFLINE</span></h3>
                                     {% endif %}
                                     </h3>
@@ -127,20 +127,20 @@
                             <h2 class="letter-spc">About Me</h2>
                         </div>
                         <div class="about_me padding fit-cont-h max-fit">
-                            {{curr_profile.about_me}}
+                            {{curr_prof[0].about_me}}
                         </div>
                     </div>
                 </div>
                 <br />
                 <br />
                 <div class="flexed al-cent just-cent">
-                    <div class="marg-right-5">
+                    <div class="marg-right-10">
                         <img src="{{url_for('static',filename='img/quote-left.png')}}" alt="movie" id="icon">
                     </div>
                     <div>
-                        <h3 id="big-quote">{{curr_profile.fav_quote}}</h3>
+                        <h3 id="big-quote">{{curr_prof[0].fav_quote}}</h3>
                     </div>
-                    <div class="marg-left-5">
+                    <div class="marg-left-10">
                         <img src="{{url_for('static',filename='img/quote-right.png')}}" alt="movie" id="icon">
                     </div>
                 </div>
@@ -153,8 +153,8 @@
                         </div>
                         <div>
                             <form action="/new_procomm/" method="post">
-                                <input type="hidden" name="profile_id" value="{{curr_profile.id}}">
-                                <input type="hidden" name="user_id" value="{{curr_user.id}}">
+                                <input type="hidden" name="profile_id" value="{{curr_prof[0].id}}">
+                                <input type="hidden" name="user_id" value="{{curr_user[0].creator.id}}">
                                 <div class="marg-bottom-10">
                                     <label>Title:</label>
                                     <input type="text" name="comment_title" id="title">

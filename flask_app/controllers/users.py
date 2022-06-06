@@ -25,14 +25,11 @@ def choose():
 def dash():
     if "user_id" in session:
         data = {"id" : session['user_id']}
-        current_user = user.User.get_by_id(data)
+        curr_user = profile.Profile.get_prof_userav(data)
         all_posts = post.Post.get_all()
         all_comments = comment.Comment.get_all_comments()
-        avatar_data = {"id" : current_user.avatar_id}
-        current_avatar = avatar.Avatar.getav_by_id(avatar_data)
         all_users = user.User.get_all_with_av()
-        current_prof = profile.Profile.get_by_id(data)
-        return render_template("dashboard.html", all_users = all_users, current_user = current_user, all_comments=all_comments, all_posts = all_posts, current_avatar = current_avatar, current_prof = current_prof)
+        return render_template("dashboard.html", all_users = all_users, curr_user = curr_user, all_comments=all_comments, all_posts = all_posts)
     return redirect("/")
 
 @app.route("/logout/")
