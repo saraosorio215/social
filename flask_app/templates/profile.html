@@ -189,9 +189,11 @@
                                     <div>
                                         <p class="padd-left-5 padd-right">{{comm.created_at}}</p>
                                     </div>
+                                    {% if comm.user_id == session["user_id"] %}
                                     <div class="edit-links" id="bold">
                                         ( <a href="/delete/procomm/{{comm.id}}" id="red-dot">delete </a>)
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% endfor %}
