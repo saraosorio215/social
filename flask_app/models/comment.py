@@ -57,3 +57,9 @@ class Comment():
     def add_like(cls, data):
         query = "UPDATE comments SET like_count = like_count + 1 WHERE id = %(id)s;"
         return connectToMySQL("contact").query_db(query, data)
+
+
+    @classmethod
+    def delete_comment(cls, data):
+        query = "DELETE FROM comments WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)

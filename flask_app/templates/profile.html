@@ -168,7 +168,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="colored box-shadow padding-20 max-width marg-left-20">
+                    <div class="colored box-shadow padding-20 marg-left-20 max-width">
                         <div>
                             <h2 class="center letter-spc">Comments</h2>
                         </div>
@@ -188,6 +188,9 @@
                                     </div>
                                     <div>
                                         <p class="padd-left-5 padd-right">{{comm.created_at}}</p>
+                                    </div>
+                                    <div class="edit-links" id="bold">
+                                        ( <a href="/delete/procomm/{{comm.id}}" id="red-dot">delete </a>)
                                     </div>
                                 </div>
                             </div>

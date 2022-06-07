@@ -134,7 +134,7 @@
                     {% if session["user_id"] != post.user_id %}
                     <div class="just-right edit-links">
                         <a href="/like/post/{{post.id}}">
-                            <button class="flexed al-cent cool-btn-l">
+                            <button class="flexed al-cent cool-btn">
                                 <img src="{{url_for('static',filename='img/cool-icon.jpg')}}" alt="cool-icon" id="icon-tiny">
                                 <p id="icon-tiny-text" class="marg-left-5">{{post.like_count}}</p>
                             </button>

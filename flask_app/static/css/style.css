@@ -345,11 +345,9 @@ textarea { resize: none; }
     background-color: white;
     font-size: 16px;
     margin: 3px;
-}
-
-.login input[type=text], .login input[type=password] {
     width: 300px;
 }
+
 
 .main-title, #big-quote {
     font-size: 25px;

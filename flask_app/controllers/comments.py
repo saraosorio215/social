@@ -14,7 +14,11 @@ def like_comm(id):
     return redirect("/dashboard/")
 
 
-
+@app.route("/delete/comm/<int:id>")
+def deletecomm(id):
+    data = {"id": id}
+    comment.Comment.delete_comment(data)
+    return redirect("/dashboard/")
 
 
 
@@ -30,3 +34,4 @@ def new_comm():
     }
     comment.Comment.add_comment(data)
     return redirect("/dashboard/")
+

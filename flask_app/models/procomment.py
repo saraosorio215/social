@@ -55,3 +55,9 @@ class Procomment():
                 temp_users.creator = avatar.Avatar(avatar_data)
                 alldata.append(temp_users)
         return alldata
+
+
+    @classmethod
+    def delete_procomm(cls, data):
+        query = "DELETE FROM prof_comments WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)

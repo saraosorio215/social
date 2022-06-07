@@ -4,6 +4,14 @@ from flask_app.models import procomment
 
 
 
+#*----------------------------------DISPLAY ROUTES-------------------------------------
+
+@app.route("/delete/procomm/<int:id>")
+def delete_procomm(id):
+    data = {"id": id}
+    procomment.Procomment.delete_procomm(data)
+    return redirect("/dashboard/")
+
 #*----------------------------------ACTION ROUTES-------------------------------------
 
 @app.route("/new_procomm/", methods=["POST"])
