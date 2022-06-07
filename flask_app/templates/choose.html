@@ -8,17 +8,17 @@
     <title>Welcome!</title>
 </head>
 <body>
-    <div class="header flexed">
-        <div class="h-1 single padd-left-5">
-            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+    <div class="header flexed al-cent">
+        <div class="h-1 single padd-left-5 marg-left-5">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
         </div>
-        <div class="h-2 single padd-left-5">
-            <a href="/">Back to Login</a>
+        <div class="h-2 single padd-left-5 edit-links">
+            <a href="/">back to login</a>
         </div>
     </div>
-    <div class="whole padd-bottom-10 center">
+    <div class="whole page padd-bottom-10 center">
         <div class="padding-10 center letter-spc" id="prof-name">
-            <h1>Welcome to C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo" id="choose-logo">lPlace!</h1>
+            <h1>Welcome to C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo" id="choose-logo">lPlace!</h1>
         </div>
         <div class="form just-cent center">
             <form action="/register/" method="post">
@@ -58,33 +58,20 @@
             <h1>Choose your avatar</h1>
         </div>
         <div class="av-imgs padd-top-10">
-            <div class="marg-top-20 flexed sp-btw">
+            <div class="flexed sp-btw wrap radio sixty centered">
                 {% for avatar in avatars %}
-                    {% if (avatar.id) < 6 %}
-                        <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
-                        <label for ="{{avatar.id}}">
-                            <div class="low-img padding-10">
-                                <img src="{{avatar.file_path}}" alt="option 10">
-                                <h3 class="center">{{avatar.name}}</h3>
-                            </div>
-                        </label>
-                    {% endif %}
+                <div class="margin marg-bottom-20">
+                    <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
+                    <label for ="{{avatar.id}}">
+                        <div class="low-img padding-10">
+                            <img src="{{avatar.file_path}}" alt="option 10">
+                            <h3 class="center">{{avatar.name}}</h3>
+                        </div>
+                    </label>
+                </div>
                 {% endfor %}
             </div>
-            <div class="marg-top-20 flexed sp-btw">
-                {% for avatar in avatars %}
-                    {% if (avatar.id) > 5 %}
-                        <input type="radio" name="avatar_id" value="{{avatar.id}}" id="{{avatar.id}}">
-                        <label for ="{{avatar.id}}">
-                            <div class="high-img padding-10">
-                                <img src="{{avatar.file_path}}" alt="option 10">
-                                <h3>{{avatar.name}}</h3>
-                            </div>
-                        </label>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <input type="submit" value="Register" id="register">
+            <button type="submit" class="posted">register</button>
             </form>
         </div>
     </div>

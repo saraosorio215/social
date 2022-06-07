@@ -24,7 +24,7 @@ class Message():
 
     @classmethod
     def get_all_inbox(cls):
-        query = "SELECT * FROM messages JOIN users ON users.id = messages.user_id JOIN avatars ON avatars.id = users.avatar_id;"
+        query = "SELECT * FROM messages JOIN users ON users.id = messages.user_id JOIN avatars ON avatars.id = users.avatar_id ORDER BY messages.created_at DESC;"
         results = connectToMySQL("contact").query_db(query)
         messages = []
         if results:
@@ -57,7 +57,7 @@ class Message():
 
     @classmethod
     def get_all_outbox(cls):
-        query = "SELECT * FROM messages JOIN users ON users.id = messages.recipient_id JOIN avatars ON avatars.id = users.avatar_id;"
+        query = "SELECT * FROM messages JOIN users ON users.id = messages.recipient_id JOIN avatars ON avatars.id = users.avatar_id ORDER BY messages.created_at DESC;"
         results = connectToMySQL("contact").query_db(query)
         messages = []
         if results:
@@ -104,7 +104,7 @@ class Message():
 
     @classmethod
     def all_msgs(cls, data):
-        query = "SELECT * FROM messages WHERE (user_id = %(user_id)s) AND (recipient_id = %(recipient_id)s);"
+        query = "SELECT * FROM messages WHERE (user_id = %(user_id)s) AND (recipient_id = %(recipient_id)s) ORDER BY messages.created_at DESC;"
         return connectToMySQL("contact").query_db(query, data)
 
 

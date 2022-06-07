@@ -16,7 +16,7 @@ class Procomment():
 
     @classmethod
     def get_all_procomms(cls, data):
-        query = "SELECT * FROM prof_comments WHERE profile_id = %(id)s;"
+        query = "SELECT * FROM prof_comments WHERE profile_id = %(id)s ORDER BY prof_comments.created_at DESC;"
         return connectToMySQL("contact").query_db(query, data)
 
     @classmethod
@@ -26,7 +26,7 @@ class Procomment():
 
     @classmethod
     def get_procomm_userav(cls, data):
-        query = "SELECT * FROM prof_comments JOIN users ON prof_comments.user_id = users.id JOIN avatars ON avatars.id = users.avatar_id WHERE prof_comments.profile_id = %(id)s;"
+        query = "SELECT * FROM prof_comments JOIN users ON prof_comments.user_id = users.id JOIN avatars ON avatars.id = users.avatar_id WHERE prof_comments.profile_id = %(id)s ORDER BY prof_comments.created_at DESC;"
         results = connectToMySQL("contact").query_db(query, data)
         alldata = []
         if results:

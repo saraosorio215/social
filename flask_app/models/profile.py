@@ -62,5 +62,5 @@ class Profile():
 
     @classmethod
     def create_prof(cls, data):
-        query = "INSERT INTO profiles (birthday, hometown, location, fav_show, fav_movie, fav_quote, about_me, user_id) VALUES (%(birthday)s, %(hometown)s, %(location)s, %(fav_show)s, %(fav_movie)s, %(fav_quote)s, %(about_me)s, %(user_id)s);"
+        query = "INSERT INTO profiles (birthday, hometown, location, fav_show, fav_movie, fav_quote, about_me, user_id) VALUES (%%(birthday)s, %%(hometown)s, %%(location)s, %%(fav_show)s, %%(fav_movie)s, %%(fav_quote)s, %%(about_me)s, %%(user_id)s);"
         return connectToMySQL("contact").query_db(query, data)

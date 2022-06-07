@@ -14,11 +14,14 @@ def user_profile(id):
         data = {"id": id}
         curr_prof = profile.Profile.get_prof_userav(data)
         com_data = {"id" : curr_prof[0].id}
-        birthday = curr_prof[0].birthday
-        birth_date = birthday.strftime("%m/%d")
-        age = int(date.today().strftime("%Y")) - int(birthday.strftime("%Y"))
-        all_coms = procomment.Procomment.get_procomm_userav(com_data)
-        return render_template("profile.html", curr_prof = curr_prof, birth_date=birth_date, age=age, curr_user=curr_user, all_coms = all_coms)
+        if(com_data is None):
+            return redirect("/dashboard/")
+        else:
+            birthday = curr_prof[0].birthday
+            birth_date = birthday.strftime("%m/%d")
+            age = int(date.today().strftime("%Y")) - int(birthday.strftime("%Y"))
+            all_coms = procomment.Procomment.get_procomm_userav(com_data)
+            return render_template("profile.html", curr_prof = curr_prof, birth_date=birth_date, age=age, curr_user=curr_user, all_coms = all_coms)
     return redirect("/")
 
 
@@ -40,9 +43,8 @@ def edit_prof():
 
 #*---------------------------------ACTION ROUTES-------------------------------------
 
-@app.route("/create/profile/<int:id>", methods=['POST'])
-def create_prof(id):
-    profuser_id = int(id);
+@app.route("/create/profile/", methods=['POST'])
+def create_prof():
     data = {
         "birthday" : request.form["birthday"],
         "hometown" : request.form["hometown"],
@@ -51,13 +53,14 @@ def create_prof(id):
         "fav_movie" : request.form["fav_movie"],
         "fav_quote" : request.form["fav_quote"],
         "about_me" : request.form["about_me"],
-        "user_id" : profuser_id
+        "user_id" : request.form["user_id"]
     }
     profile.Profile.create_prof(data)
     return redirect("/dashboard/")
 
 @app.route("/update/profile/<int:id>", methods=['POST'])
 def update_prof(id):
+    profid = id
     data = {
         "birthday" : request.form["birthday"],
         "hometown" : request.form["hometown"],
@@ -66,7 +69,7 @@ def update_prof(id):
         "fav_movie" : request.form["fav_movie"],
         "fav_quote" : request.form["fav_quote"],
         "about_me" : request.form["about_me"],
-        "id" : id
+        "id" : int(profid)
     }
     profile.Profile.upd_prof(data)
     return redirect("/dashboard/")

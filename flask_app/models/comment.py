@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
-from flask_app.models import user, post
+from flask_app.models import user, post, avatar
 
 
 class Comment():
@@ -23,7 +23,7 @@ class Comment():
 
     @classmethod
     def get_all_comments(cls):
-        query = "SELECT * FROM comments JOIN users ON users.id = comments.user_id;"
+        query = "SELECT * FROM comments JOIN users ON users.id = comments.user_id JOIN avatars ON avatars.id = users.avatar_id ORDER BY comments.created_at DESC;"
         results = connectToMySQL("contact").query_db(query)
         comments = []
         if results:
@@ -41,6 +41,19 @@ class Comment():
                     "updated_at" : row["users.updated_at"],
                     "online" : row["online"]
                 }
-                temp_user.creator = user.User(user_data)
+                avatar_data = {
+                    "id": row["avatars.id"],
+                    "name" : row["name"],
+                    "file_path" : row["file_path"],
+                    "created_at" : row["avatars.created_at"],
+                    "updated_at" : row["avatars.updated_at"]
+                }
+                temp_user.maker = user.User(user_data)
+                temp_user.creator = avatar.Avatar(avatar_data)
                 comments.append(temp_user)
         return comments
+
+    @classmethod
+    def add_like(cls, data):
+        query = "UPDATE comments SET like_count = like_count + 1 WHERE id = %(id)s;"
+        return connectToMySQL("contact").query_db(query, data)

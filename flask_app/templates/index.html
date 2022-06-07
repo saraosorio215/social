@@ -8,14 +8,26 @@
     <title>CoolPlace</title>
 </head>
 <body>
-    <div class="colored center">
+    <div class="med-blue center">
+        <br />
+        <br />
         <br />
         <div class="main-title padding">
             <h1>Welcome Back to C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
         </div>
         <br />
         <br />
-        <div class="login centered">
+        <div class="flexed sp-btw marg-left-20 marg-right-20">
+            {% for avi in all_avatars %}
+            <div>
+                <img src="{{avi.file_path}}" id="icon-lrg">
+            </div>
+            {% endfor %}
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="login centered box-shadow post">
             <form action="/login/" method="post">
             <div>
                 <h2 class="center letter-spc">Login</h2>
@@ -28,11 +40,11 @@
                 {% endwith %}
                 <div>
                     <input type="hidden" name="which_form" value="login">
-                    <label>Email:</label>
+                    <label id="prof-details">email:</label>
                     <input type="text" name="email">
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label id="prof-details">password:</label>
                     <input type="password" name="password">
                 </div>
                 <div class="center">
@@ -44,6 +56,9 @@
                 <h3>Not a member? Join us! <a href="/welcome/">Register here!</a></h3>
             </div>
         </div>
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />

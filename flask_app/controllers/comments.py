@@ -7,7 +7,11 @@ from flask_app.config.mysqlconnection import connectToMySQL
 #*---------------------------------DISPLAY ROUTES-------------------------------------
 
 
-
+@app.route("/like/comm/<int:id>")
+def like_comm(id):
+    data = {"id": id}
+    comment.Comment.add_like(data)
+    return redirect("/dashboard/")
 
 
 

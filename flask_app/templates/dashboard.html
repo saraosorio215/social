@@ -32,30 +32,25 @@
             </div>
             <br />
             <div>
-                {% if curr_user[0].birthday == null %}
-                <div>
-                    <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
-                </div>
-                {% endif %}
-                {% if curr_user[0].birthday != null %}
                 <div>
                     <a href="/profile/{{curr_user[0].creator.id}}">View Profile</a>
                     <br />
                     <a href="/edit/profile/">Edit Profile</a>
                 </div>
-                {% endif %}
             </div>
         </div>
         <div class="c-post marg-top-10 center">
             <div class="bright padd-top-10 padd-bottom-10 box-shadow marg-top-10">
                 <div>
-                    <h2 class="marg-bottom-5">Got something to say?</h2>
+                    <h2 class="marg-bottom-5 padd-top">Got something to say?</h2>
                     <h2 class="marg-bottom-10">Post it here!</h2>
                 </div>
                 <div>
                     <form action="/new_post/" method="post">
+                    <div class="marg-bottom-10">
                         <label>Title:</label>
                         <input type="text" name="title" id="title">
+                    </div>
                     </div>
                     <div>
                         <textarea name="content" cols="30" rows="4" placeholder="Say it!" id="content" wrap="hard"></textarea>
@@ -106,12 +101,13 @@
                     <p id="comm-text" class="padd-bottom">{{post.content}}</p>
                 </div>
                 <div class="flexed al-cent sp-btw">
-                    <div class="flexed al-cent padd-bottom just-left">
+                    <div class="flexed al-cent padd-bottom just-left edit-links">
                         <div>
+                            <a href="/profile/{{post.maker.id}}">
                             <img src="{{post.creator.file_path}}" id="icon-sm">
                         </div>
                         <div>
-                            <h3>{{post.maker.username}} |</h3>
+                            <h3>{{post.maker.username}} |</h3></a>
                         </div>
                         <div>
                             <h4 class="marg-left-10">{{post.maker.created_at}}</h4>
@@ -126,7 +122,7 @@
                         {% endif %}
                     </div>
                     {% if session["user_id"] == post.user_id %}
-                    <div class="flexed al-cent just-right watch-button box-shadow">
+                    <div class="flexed al-cent just-right edit-links box-shadow padding-3 watch-button">
                         <div>
                             <img src="{{url_for('static',filename='img/cool-icon.jpg')}}" alt="cool-icon" id="icon-tiny">
                         </div>
@@ -136,9 +132,9 @@
                     </div>
                     {% endif %}
                     {% if session["user_id"] != post.user_id %}
-                    <div class="just-right whole-button">
+                    <div class="just-right edit-links">
                         <a href="/like/post/{{post.id}}">
-                            <button class="flexed al-cent posted-comm">
+                            <button class="flexed al-cent cool-btn-l">
                                 <img src="{{url_for('static',filename='img/cool-icon.jpg')}}" alt="cool-icon" id="icon-tiny">
                                 <p id="icon-tiny-text" class="marg-left-5">{{post.like_count}}</p>
                             </button>
@@ -151,9 +147,33 @@
                 {% for comment in all_comments %}
                     {% if comment.post_id == post.id %}
                         <div class="actcomment">
-                            <div class="flexed sp-btw marg-bottom-5 padding-3 light-color">
-                                <p>{{comment.creator.username}}</p>
-                                <p>Posted on: {{comment.created_at}}</p>
+                            <div class="flexed sp-btw marg-bottom-5 padding-3 bottom-border">
+                                <div class="flexed just-left al-cent edit-links">
+                                    <a href="/profile/{{comment.user_id}}">
+                                    <img src="{{comment.creator.file_path}}" id="icon">
+                                    <p>{{comment.maker.username}}</a> |</p>
+                                    <p class="marg-left-5">{{comment.created_at}}</p>
+                                    {% if session["user_id"] == comment.user_id %}
+                                        <a href="/delete/comm/{{comment.id}}" class="marg-left-5">( <span id="red-dot">delete</span> )</a>
+                                </div>
+                                <div class="flexed al-cent just-right box-shadow tiny-padd-btn">
+                                    <div>
+                                        <img src="{{url_for('static',filename='img/thumb-icon.png')}}" alt="cool-icon" id="icon">
+                                    </div>
+                                    <div>
+                                        <p id="icon-tiny-text" class="marg-left-5">{{comment.like_count}}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if session["user_id"] != comment.user_id %}
+                                </div>
+                                <div>
+                                    <a href="/like/comm/{{comment.id}}"><button class="thumb-btn">
+                                    <img src="{{url_for('static',filename='img/thumb-icon.png')}}" id="icon">
+                                    <span class="marg-right-5">{{comment.like_count}}</span>
+                                    </button></a>
+                                </div>
+                                {% endif %}
                             </div>
                             <div class="marg-left-20 padding-3">
                                 <p id="comm-text">{{comment.comment_text}}</p>

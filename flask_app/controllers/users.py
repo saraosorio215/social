@@ -12,7 +12,8 @@ bcrypt=Bcrypt(app)
 def index():
     if "user_id" in session:
         return redirect ("/dashboard/")
-    return render_template("index.html")
+    all_avatars = avatar.Avatar.get_all_avatars()
+    return render_template("index.html", all_avatars = all_avatars)
 
 
 @app.route("/welcome/")
@@ -31,6 +32,7 @@ def dash():
         all_users = user.User.get_all_with_av()
         return render_template("dashboard.html", all_users = all_users, curr_user = curr_user, all_comments=all_comments, all_posts = all_posts)
     return redirect("/")
+
 
 @app.route("/logout/")
 def logout():
@@ -57,7 +59,7 @@ def register():
     if user.User.validate_user(data):
         person = user.User.create_user(data)
         session["user_id"] = person
-        return redirect("/dashboard/")
+        return redirect("/profile/setup")
     return redirect("/welcome/")
 
 
@@ -77,4 +79,8 @@ def login():
     session["user_id"]= person.id
     data = {"id": person.id}
     user.User.online(data)
+    curr_prof = profile.Profile.get_prof_userav(data)
+    print(curr_prof)
+    if curr_prof == []:
+        return redirect("/profile/setup")
     return redirect("/dashboard/")

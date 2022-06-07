@@ -8,51 +8,56 @@
     <title>Profile Setup</title>
 </head>
 <body>
-    <div class="header flexed al-cent box-shadow">
-        <div class="h-1">
-            <h1>C<img src="{{url_for('static',filename='img/sunglasses.jpg')}}" alt="logo">lPlace</h1>
+    <div class="header flexed al-cent box-shadow sp-btw">
+        <div class="h-1 marg-left-10">
+            <h1>C<img src="{{url_for('static',filename='img/sunglasses.png')}}" alt="logo">lPlace</h1>
         </div>
         <div class="h-2">
-            <a href="/dashboard/" id="link">| Dashboard |</a>
-            <a href="/logout/" id="link">Logout |</a>
+            <a href="/logout/" id="link">logout</a>
         </div>
     </div>
-    <div class="page center prof-form colored flexed">
-        <form action="/create/profile/{{curr_user.id}}" method="post">
-            <div>
-                <label>Birthday: </label>
-                <input type="date" name="birthday" id="title">
-            </div>
-            <div>
-                <label>Hometown: </label>
-                <input type="text" name="hometown" id="title">
-            </div>
-            <div>
-                <label>Location: </label>
-                <input type="text" name="location" id="title">
-            </div>
-            <div>
-                <label>Favorite Show: </label>
-                <input type="text" name="fav_show" id="title">
-            </div>
-            <div>
-                <label>Favorite Movie: </label>
-                <input type="text" name="fav_movie" id="title">
-            </div>
-            <div>
-                <label>Favorite Quote: </label>
-                <input type="text" name="fav_quote" id="title">
-            </div>
-            <div>
-                <label>About Me: </label>
-                <textarea name="about_me" cols="30" rows="4" placeholder="Tell us more" id="content" wrap="hard"></textarea>
-            </div>
-            <br />
-            <div class="center">
-                <input type="submit" value="Update Profile" id="posted">
-            </div>
-            <br />
-        </form>
+    <div class="page colored">
+        <h1 class="center padd-top-10">tell us about yourself!</h1>
+        <p class="center">(all fields required)</p>
+        <div class="center">
+            <form action="/create/profile/" method="post">
+                <input type="hidden" value="{{curr_user.id}}" name="user_id">
+                <div class="marg-top-20 flexed al-cent just-cent marg-bottom-10">
+                    <label>Birthday: </label>
+                    <input type="date" name="birthday" id="title">
+                </div>
+                <div class="flexed al-cent just-cent marg-bottom-10">
+                    <label>Hometown: </label>
+                    <input type="text" name="hometown" id="title">
+                </div>
+                <div class="flexed al-cent just-cent marg-bottom-10">
+                    <label>Location: </label>
+                    <input type="text" name="location" id="title">
+                </div>
+                <div class="flexed al-cent just-cent marg-bottom-10">
+                    <label>Favorite Show: </label>
+                    <input type="text" name="fav_show" id="title">
+                </div>
+                <div class="flexed al-cent just-cent marg-bottom-10">
+                    <label>Favorite Movie: </label>
+                    <input type="text" name="fav_movie" id="title">
+                </div>
+                <div class="flexed al-cent just-cent marg-bottom-10">
+                    <label>Favorite Quote: </label>
+                    <input type="text" name="fav_quote" id="title">
+                </div>
+                <div class="flexed al-cent just-cent">
+                    <label>About Me: </label>
+                    <textarea name="about_me" cols="30" rows="4" placeholder="Tell us more" id="content" wrap="hard"></textarea>
+                </div>
+                <br />
+                <div class="center">
+                    <button type="submit" class="posted">create profile & go to dashboard</button>
+                </div>
+                <br />
+                <br />
+            </form>
+        </div>
     </div>
 </body>
 </html>

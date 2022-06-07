@@ -30,18 +30,11 @@
             </div>
             <br />
             <div>
-                {% if curr_user.birthday == null %}
                 <div>
-                    <a href="/profile/setup">SET UP YOUR PROFILE HERE!</a>
-                </div>
-                {% endif %}
-                {% if curr_user.birthday != null %}
-                <div>
-                    <a href="/profile/{{current_user.id}}">View Profile</a>
+                    <a href="/profile/{{curr_user[0].creator.id}}">View Profile</a>
                     <br />
                     <a href="/edit/profile/">Edit Profile</a>
                 </div>
-                {% endif %}
             </div>
         </div>
         <div class="twenty"></div>
@@ -104,9 +97,10 @@
                                 </div>
                             </div>
                             <div>
-                                <h4>subject: {{delivery.subject}}</h4>
+                                <h4>sent at: {{delivery.created_at}}</h4>
                             </div>
-                            <h4>sent at: {{delivery.created_at}}</h4>
+                            <h4>subject: {{delivery.subject}}</h4>
+                            <p class="marg-left-5">{{delivery.msg_text}}</p>
                         </div>
                         {% endif %}
                     {% endfor %}

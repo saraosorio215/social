@@ -32,33 +32,37 @@
         </div>
         <div class="edit">
             <form action="/update/profile/{{curr_prof[0].id}}" method="post">
-                <div>
+                <div class="marg-bottom-10">
                     <label>Birthday: </label>
                     <input type="date" name="birthday" value="{{curr_prof[0].birthday}}" id="title">
                 </div>
-                <div>
+                <div class="marg-bottom-10">
                     <label>Hometown: </label>
                     <input type="text" name="hometown" value="{{curr_prof[0].hometown}}" id="title">
                 </div>
-                <div>
+                <div class="marg-bottom-10">
                     <label>Location: </label>
                     <input type="text" name="location" value="{{curr_prof[0].location}}" id="title">
                 </div>
-                <div>
+                <div class="marg-bottom-10">
                     <label>Favorite Show: </label>
                     <input type="text" name="fav_show" value="{{curr_prof[0].fav_show}}" id="title">
                 </div>
-                <div>
+                <div class="marg-bottom-10">
                     <label>Favorite Movie: </label>
                     <input type="text" name="fav_movie" value="{{curr_prof[0].fav_movie}}" id="title">
                 </div>
-                <div>
+                <div class="marg-bottom-10">
                     <label>Favorite Quote: </label>
                     <input type="text" name="fav_quote" value="{{curr_prof[0].fav_quote}}" id="title">
                 </div>
-                <div>
-                    <label>About Me: </label>
-                    <input type ="text" name="about_me" cols="30" rows="4" value="{{curr_prof[0].about_me}}" id="content" wrap="hard">
+                <div class="flexed al-cent">
+                    <div class="marg-right-5">
+                        <label>About Me: </label>
+                    </div>
+                    <div>
+                        <textarea name="about_me" cols="30" rows="4" id="content" wrap="hard">{{curr_prof[0].about_me}}</textarea>
+                    </div>
                 </div>
                 <br />
                 <div class="center">
